@@ -11,3 +11,4 @@ if [ -z "$DATABASE_URL" ]; then
 fi
 
 python manage.py migrate --no-input
+python manage.py atualizar_site
