@@ -5,13 +5,15 @@ from django.shortcuts import redirect, render
 
 from clientes.forms import CadastroForm, LoginForm
 
+AUTH_BACKEND = "django.contrib.auth.backends.ModelBackend"
+
 
 def login_view(request):
     if request.user.is_authenticated:
         return redirect("clientes:painel")
     form = LoginForm(request, data=request.POST or None)
     if request.method == "POST" and form.is_valid():
-        login(request, form.get_user())
+        login(request, form.get_user(), backend=AUTH_BACKEND)
         return redirect("clientes:painel")
     return render(request, "clientes/login.html", {"form": form})
 
@@ -22,7 +24,7 @@ def cadastro_view(request):
     form = CadastroForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
         user = form.save()
-        login(request, user)
+        login(request, user, backend=AUTH_BACKEND)
         messages.success(request, "Cadastro realizado com sucesso!")
         return redirect("clientes:painel")
     return render(request, "clientes/cadastro.html", {"form": form})
