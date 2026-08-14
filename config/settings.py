@@ -164,6 +164,9 @@ DATABASES = {
 }
 
 database_url = _obter_database_url()
+if database_url and database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql://', 1)
+
 if database_url:
     DATABASES['default'] = dj_database_url.config(
         default=database_url,
