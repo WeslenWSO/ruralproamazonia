@@ -38,8 +38,11 @@ class Command(BaseCommand):
         fixture = Path(settings.BASE_DIR) / options["fixture"]
 
         if not options["apenas_importar"]:
-            if "legacy" not in settings.DATABASES:
-                raise CommandError("db.sqlite3 nao encontrado para exportacao legacy.")
+            sqlite_path = Path(settings.BASE_DIR) / "db.sqlite3"
+            if not sqlite_path.exists() and "legacy" not in settings.DATABASES:
+                raise CommandError(
+                    "db.sqlite3 nao encontrado. Copie o banco local antes de migrar."
+                )
             self.stdout.write("Exportando dados do SQLite...")
             call_command("exportar_dados_sqlite", saida=str(fixture))
 
@@ -53,7 +56,7 @@ class Command(BaseCommand):
         call_command("atualizar_site")
 
         self.stdout.write("Importando dados no PostgreSQL...")
-        call_command("loaddata", str(fixture))
+        call_command("importar_dados_sqlite", arquivo=str(fixture), forcar=True)
 
         call_command("setup_social_auth")
 

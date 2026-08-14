@@ -142,10 +142,24 @@ def _obter_database_url():
     return ''
 
 
+def _postgres_ssl_require(url):
+    if 'sslmode=disable' in url:
+        return False
+    if 'sslmode=require' in url:
+        return True
+    host = url.split('@')[-1] if '@' in url else url
+    if host.startswith('dpg-') or '/dpg-' in url:
+        if '.render.com' not in host and 'postgres.render.com' not in host:
+            return False
+    return url.startswith('postgres')
+
+
+_sqlite_path = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': _sqlite_path,
     }
 }
 
@@ -154,10 +168,15 @@ if database_url:
     DATABASES['default'] = dj_database_url.config(
         default=database_url,
         conn_max_age=600,
-        ssl_require='sslmode=require' in database_url or database_url.startswith('postgres'),
+        ssl_require=_postgres_ssl_require(database_url),
     )
+    if _sqlite_path.exists():
+        DATABASES['legacy'] = {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': _sqlite_path,
+        }
 elif ON_RENDER:
-    DATABASES['default']['NAME'] = BASE_DIR / 'db.sqlite3'
+    DATABASES['default']['NAME'] = _sqlite_path
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -187,6 +206,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 SITE_BASE_URL = os.environ.get('SITE_BASE_URL', 'http://127.0.0.1:8000').strip().rstrip('/')
+SITE_DOMAIN = os.environ.get('SITE_DOMAIN', '').strip()
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

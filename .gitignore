@@ -9,3 +9,5 @@ staticfiles/
 .wa_browser/
 *.log
 .DS_Store
+fixtures/migracao_producao.json
+fixtures/dados_sqlite.json
