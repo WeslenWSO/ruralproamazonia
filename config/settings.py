@@ -5,7 +5,8 @@ import dj_database_url
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env", encoding="utf-8", override=True)
+# No Render, variáveis do painel devem prevalecer sobre .env local.
+load_dotenv(BASE_DIR / ".env", encoding="utf-8", override=False)
 
 from clientes.social_auth import montar_socialaccount_providers
 
@@ -35,7 +36,10 @@ if RENDER_EXTERNAL_HOSTNAME:
     if render_origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(render_origin)
 
-ON_RENDER = os.environ.get('RENDER', '').lower() == 'true'
+ON_RENDER = bool(
+    os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    or os.environ.get('RENDER', '').lower() in ('true', '1', 'yes')
+)
 if not DEBUG and ON_RENDER:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
@@ -112,7 +116,7 @@ if database_url:
     DATABASES['default'] = dj_database_url.config(
         default=database_url,
         conn_max_age=600,
-        ssl_require=not database_url.startswith('sqlite'),
+        ssl_require='sslmode=require' in database_url or database_url.startswith('postgres'),
     )
 elif ON_RENDER:
     from django.core.exceptions import ImproperlyConfigured
