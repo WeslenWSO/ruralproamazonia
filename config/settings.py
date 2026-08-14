@@ -114,6 +114,13 @@ if database_url:
         conn_max_age=600,
         ssl_require=not database_url.startswith('sqlite'),
     )
+elif ON_RENDER:
+    from django.core.exceptions import ImproperlyConfigured
+
+    raise ImproperlyConfigured(
+        'DATABASE_URL nao configurada no Render. Crie um PostgreSQL no painel, '
+        'vincule ao Web Service e rode migrate no deploy.'
+    )
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
