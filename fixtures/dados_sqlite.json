@@ -1,0 +1,1153 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$M93XxIATyj5QbSKWsiziwp$mEPOPDwdw5GjAWW1WuT+gyhTOWUoEOp5OnIgRauu+Vg=",
+    "last_login": "2026-08-14T04:36:35.058Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@ruralproamazonia.com.br",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-13T04:31:44.609Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$U2b80aC07BzSY2gEclV2ND$vTn7SMzqLRtz8YwPB6t0sgP0PlLoqcSXXyIhCUbKcu0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "novo",
+    "first_name": "",
+    "last_name": "",
+    "email": "novo@teste.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-13T04:52:15.101Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4suefczx46drr3x99hs63lhoe02sthu8",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHyKAwu3fsNZJgBqRqalHZl_HfbpAvdnnPufYuI61Lj2vMcRxYXocTplyWkZ2674Ae2-yRpass8Jrkn8rBd3ibOr-vR_h1U7HVbI1iViksWddBJG1Ab8d5kQHDAVDIQcT4HRUE7rwcIVqFJzJrMQEV8vuI5OA4:1wujel:B-pRT7iQ5ifUuTpNzsEJsusLU1b3ysypaXPW2H4IxOw",
+    "expire_date": "2026-08-28T04:36:35.064Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "jm2s44g6wzlavifov5hvdybn62hzsejj",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHyKAwu3fsNZJgBqRqalHZl_HfbpAvdnnPufYuI61Lj2vMcRxYXocTplyWkZ2674Ae2-yRpass8Jrkn8rBd3ibOr-vR_h1U7HVbI1iViksWddBJG1Ab8d5kQHDAVDIQcT4HRUE7rwcIVqFJzJrMQEV8vuI5OA4:1wuNZa:4DIRTOSTcXEiUmLJCqvat5DgfSF7AF-eoziWicCH1rM",
+    "expire_date": "2026-08-27T05:01:46.331Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qyvzbfn5peg0z72xviy05z1qf64cxfvy",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHyKAwu3fsNZJgBqRqalHZl_HfbpAvdnnPufYuI61Lj2vMcRxYXocTplyWkZ2674Ae2-yRpass8Jrkn8rBd3ibOr-vR_h1U7HVbI1iViksWddBJG1Ab8d5kQHDAVDIQcT4HRUE7rwcIVqFJzJrMQEV8vuI5OA4:1wuham:ETUfMvk0Tg_lox9Bw_4bw2jtzFBYbcyRg4JGmko5gLg",
+    "expire_date": "2026-08-28T02:24:20.377Z"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "127.0.0.1:8000",
+    "name": "Rural Pro Amazônia"
+  }
+},
+{
+  "model": "core.configuracaosite",
+  "pk": 1,
+  "fields": {
+    "nome_site": "Rural Pro Amazônia",
+    "slogan": "Soluções sustentáveis para o agronegócio na Amazônia",
+    "telefone": "(68) 99901-2015",
+    "whatsapp": "5568999012015",
+    "email": "contato@ruralproamazonia.com.br",
+    "endereco": "Av. Example, 1000 — Adrianópolis",
+    "cidade": "Manaus",
+    "estado": "AM",
+    "facebook": "",
+    "instagram": "",
+    "linkedin": "",
+    "youtube": "",
+    "logo": "",
+    "favicon": "",
+    "pilar_1_titulo": "Sustentabilidade",
+    "pilar_1_texto": "Práticas responsáveis que preservam a floresta e geram valor.",
+    "pilar_2_titulo": "Inovação",
+    "pilar_2_texto": "Tecnologia e conhecimento aplicados ao campo amazônico.",
+    "pilar_3_titulo": "Comunidade",
+    "pilar_3_texto": "Parcerias com produtores e cooperativas em toda a região.",
+    "texto_rodape": "© Rural Pro Amazônia. Todos os direitos reservados.",
+    "meta_description": "Consultoria e serviços para o agronegócio sustentável na Amazônia."
+  }
+},
+{
+  "model": "core.historiaempresa",
+  "pk": 1,
+  "fields": {
+    "titulo": "Nossa história na Amazônia",
+    "conteudo": "<p>A <strong>Rural Pro Amazônia</strong> nasceu da união entre experiência técnica e compromisso com o desenvolvimento sustentável da região.</p><p>Atuamos apoiando produtores rurais, cooperativas e empresas com consultoria, capacitação e soluções integradas para o campo.</p>",
+    "imagem": ""
+  }
+},
+{
+  "model": "core.slidehero",
+  "pk": 13,
+  "fields": {
+    "titulo": "Agronegócio sustentável",
+    "subtitulo": "Tecnologia e respeito à floresta",
+    "imagem": "",
+    "imagem_estatica": "img/hero-1.png",
+    "texto_botao": "Saiba mais",
+    "link": "/servicos/",
+    "ordem": 1,
+    "ativo": true
+  }
+},
+{
+  "model": "core.slidehero",
+  "pk": 14,
+  "fields": {
+    "titulo": "Consultoria especializada",
+    "subtitulo": "Do planejamento à execução",
+    "imagem": "",
+    "imagem_estatica": "img/hero-2.png",
+    "texto_botao": "Saiba mais",
+    "link": "/contato/",
+    "ordem": 2,
+    "ativo": true
+  }
+},
+{
+  "model": "core.slidehero",
+  "pk": 15,
+  "fields": {
+    "titulo": "Fortalecendo comunidades",
+    "subtitulo": "Parcerias que transformam",
+    "imagem": "",
+    "imagem_estatica": "img/hero-3.png",
+    "texto_botao": "Saiba mais",
+    "link": "/blog/",
+    "ordem": 3,
+    "ativo": true
+  }
+},
+{
+  "model": "core.slidehero",
+  "pk": 16,
+  "fields": {
+    "titulo": "Medida de terra por drone",
+    "subtitulo": "Topografia de precisão para sua propriedade",
+    "imagem": "",
+    "imagem_estatica": "img/hero-drone-topografia.jpg",
+    "texto_botao": "Saiba mais",
+    "link": "/servicos/topografia/",
+    "ordem": 4,
+    "ativo": true
+  }
+},
+{
+  "model": "servicos.servico",
+  "pk": 13,
+  "fields": {
+    "titulo": "Consultoria agrícola",
+    "slug": "consultoria-agricola",
+    "resumo": "Planejamento de safra e manejo sustentável.",
+    "link": "",
+    "descricao": "<p>Planejamento de safra e manejo sustentável.</p><p>Entre em contato para um diagnóstico personalizado.</p>",
+    "imagem": "",
+    "imagem_estatica": "img/servico-1.png",
+    "destaque": true,
+    "ativo": true,
+    "ordem": 1,
+    "criado_em": "2026-08-13T04:34:22.725Z",
+    "atualizado_em": "2026-08-13T04:34:22.725Z"
+  }
+},
+{
+  "model": "servicos.servico",
+  "pk": 14,
+  "fields": {
+    "titulo": "Gestão ambiental",
+    "slug": "gestao-ambiental",
+    "resumo": "Regularização e boas práticas ambientais.",
+    "link": "",
+    "descricao": "<p>Regularização e boas práticas ambientais.</p><p>Entre em contato para um diagnóstico personalizado.</p>",
+    "imagem": "",
+    "imagem_estatica": "img/servico-2.png",
+    "destaque": true,
+    "ativo": true,
+    "ordem": 2,
+    "criado_em": "2026-08-13T04:34:22.730Z",
+    "atualizado_em": "2026-08-13T04:34:22.730Z"
+  }
+},
+{
+  "model": "servicos.servico",
+  "pk": 15,
+  "fields": {
+    "titulo": "Capacitação rural",
+    "slug": "capacitacao-rural",
+    "resumo": "Treinamentos presenciais e online.",
+    "link": "",
+    "descricao": "<p>Treinamentos presenciais e online.</p><p>Entre em contato para um diagnóstico personalizado.</p>",
+    "imagem": "",
+    "imagem_estatica": "img/servico-3.png",
+    "destaque": true,
+    "ativo": true,
+    "ordem": 3,
+    "criado_em": "2026-08-13T04:34:22.736Z",
+    "atualizado_em": "2026-08-13T04:34:22.736Z"
+  }
+},
+{
+  "model": "servicos.servico",
+  "pk": 16,
+  "fields": {
+    "titulo": "BuscarRural",
+    "slug": "buscarrural",
+    "resumo": "Consultas de CAR e CCIR para propriedades rurais.",
+    "link": "",
+    "descricao": "<p>O <a href=\"https://buscarural.com.br\" target=\"_blank\" rel=\"noopener noreferrer\"><strong>BuscarRural</strong></a> reúne consultas essenciais para regularização e gestão de imóveis rurais na Amazônia.</p><h3>Buscar Car</h3><p>Consulta e acompanhamento do Cadastro Ambiental Rural (CAR).</p><h3>Buscar CCIR</h3><p>Emissão e validação do Certificado de Cadastro de Imóvel Rural (CCIR).</p><p><a href=\"https://buscarural.com.br\" target=\"_blank\" rel=\"noopener noreferrer\">buscarural.com.br</a></p>",
+    "imagem": "",
+    "imagem_estatica": "img/servico-2.png",
+    "destaque": true,
+    "ativo": true,
+    "ordem": 4,
+    "criado_em": "2026-08-13T04:49:21.210Z",
+    "atualizado_em": "2026-08-13T04:49:21.210Z"
+  }
+},
+{
+  "model": "servicos.servico",
+  "pk": 17,
+  "fields": {
+    "titulo": "Topografia",
+    "slug": "topografia",
+    "resumo": "Medição de áreas e levantamento topográfico com drone.",
+    "link": "",
+    "descricao": "<p>Serviço de <strong>topografia</strong> com tecnologia de <strong>drone</strong> para medição precisa de terras rurais.</p><h3>Medição de terra por drone</h3><p>Levantamento de perímetros, áreas cultiváveis e divisas com agilidade e precisão centimétrica.</p><h3>Entregáveis</h3><p>Plantas topográficas, memoriais descritivos e dados georreferenciados para regularização, financiamento e planejamento da propriedade.</p>",
+    "imagem": "",
+    "imagem_estatica": "img/servico-topografia.jpg",
+    "destaque": true,
+    "ativo": true,
+    "ordem": 5,
+    "criado_em": "2026-08-13T17:58:54.017Z",
+    "atualizado_em": "2026-08-13T17:58:54.017Z"
+  }
+},
+{
+  "model": "servicos.servico",
+  "pk": 18,
+  "fields": {
+    "titulo": "Defesa Ambiental - Juridico",
+    "slug": "defesa-ambiental-juridico",
+    "resumo": "Realizamos defesa ambeintal ambito Administrativo\r\ne Juridico.",
+    "link": "",
+    "descricao": "<p>Defesa Ambiental</p>",
+    "imagem": "servicos/Captura_de_tela_2026-07-24_203328.png",
+    "imagem_estatica": "",
+    "destaque": true,
+    "ativo": true,
+    "ordem": 0,
+    "criado_em": "2026-08-14T02:26:14.490Z",
+    "atualizado_em": "2026-08-14T02:26:14.490Z"
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 1,
+  "fields": {
+    "nome": "Notícias",
+    "slug": "noticias"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 7,
+  "fields": {
+    "titulo": "Novidades do setor na Amazônia",
+    "slug": "novidades-do-setor-na-amazonia",
+    "categoria": 1,
+    "autor": "Rural Pro Amazônia",
+    "resumo": "Panorama das tendências para o agronegócio regional.",
+    "conteudo": "<p>Panorama das tendências para o agronegócio regional.</p>",
+    "imagem": "",
+    "imagem_estatica": "img/blog-1.png",
+    "link_externo": "",
+    "destaque": true,
+    "publicado": true,
+    "publicado_em": "2026-08-13T04:34:22.745Z",
+    "atualizado_em": "2026-08-13T04:34:22.745Z"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 8,
+  "fields": {
+    "titulo": "Evento de capacitação rural",
+    "slug": "evento-de-capacitacao-rural",
+    "categoria": 1,
+    "autor": "Rural Pro Amazônia",
+    "resumo": "Inscrições abertas para workshop gratuito.",
+    "conteudo": "<p>Inscrições abertas para workshop gratuito.</p>",
+    "imagem": "",
+    "imagem_estatica": "img/blog-2.png",
+    "link_externo": "",
+    "destaque": true,
+    "publicado": true,
+    "publicado_em": "2026-08-13T04:34:22.750Z",
+    "atualizado_em": "2026-08-13T04:34:22.750Z"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 9,
+  "fields": {
+    "titulo": "Parceria com cooperativas",
+    "slug": "parceria-com-cooperativas",
+    "categoria": 1,
+    "autor": "Rural Pro Amazônia",
+    "resumo": "Ampliamos atendimento a produtores associados.",
+    "conteudo": "<p>Ampliamos atendimento a produtores associados.</p>",
+    "imagem": "",
+    "imagem_estatica": "img/blog-3.png",
+    "link_externo": "https://ac24horas.com/2026/08/09/cafe-acreano-ganha-destaque-e-espaco-de-degustacao-na-expoacre-2026/",
+    "destaque": true,
+    "publicado": true,
+    "publicado_em": "2026-08-13T04:34:22.756Z",
+    "atualizado_em": "2026-08-13T05:04:27.864Z"
+  }
+},
+{
+  "model": "contato.inscricaowhatsapp",
+  "pk": 1,
+  "fields": {
+    "nome": "",
+    "telefone": "68992824636",
+    "ativo": true,
+    "criado_em": "2026-08-13T04:49:25.279Z"
+  }
+},
+{
+  "model": "contato.inscricaowhatsapp",
+  "pk": 2,
+  "fields": {
+    "nome": "teste",
+    "telefone": "68999073217",
+    "ativo": true,
+    "criado_em": "2026-08-13T05:02:18.714Z"
+  }
+},
+{
+  "model": "contato.inscricaowhatsapp",
+  "pk": 3,
+  "fields": {
+    "nome": "",
+    "telefone": "68999154467",
+    "ativo": true,
+    "criado_em": "2026-08-14T02:04:35.061Z"
+  }
+},
+{
+  "model": "contato.contatoalertaclima",
+  "pk": 1,
+  "fields": {
+    "nome": "Contato 1",
+    "telefone": "68999073217",
+    "ativo": true,
+    "ultimo_envio": null,
+    "criado_em": "2026-08-13T04:56:18.177Z"
+  }
+},
+{
+  "model": "contato.contatoalertaclima",
+  "pk": 2,
+  "fields": {
+    "nome": "Contato 2",
+    "telefone": "68992824636",
+    "ativo": true,
+    "ultimo_envio": null,
+    "criado_em": "2026-08-13T04:56:18.182Z"
+  }
+},
+{
+  "model": "clientes.perfilcliente",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "novo"
+    ],
+    "nome_completo": "Novo User",
+    "empresa": "",
+    "telefone": "",
+    "documento": "",
+    "criado_em": "2026-08-13T04:52:15.486Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 1,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "pendente",
+    "dados": {},
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "",
+    "mensagem_erro": "",
+    "criado_em": "2026-08-14T03:14:43.995Z",
+    "atualizado_em": "2026-08-14T03:14:43.995Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 2,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "pendente",
+    "dados": {},
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "",
+    "mensagem_erro": "",
+    "criado_em": "2026-08-14T03:15:27.649Z",
+    "atualizado_em": "2026-08-14T03:15:27.649Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 3,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "erro",
+    "dados": {},
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "",
+    "mensagem_erro": "Message: invalid session id: session deleted as the browser has closed the connection\nfrom disconnected: not connected to DevTools\n  (Session info: chrome=151.0.7922.110); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tchromedriver!GetHandleVerifier [0x7ff65c2aabb5+151b5]\n\tchromedriver!GetHandleVerifier [0x7ff65c2aac10+15210]\n\tchromedriver!(No symbol) [0x7ff65bdd5d6d]\n\tchromedriver!(No symbol) [0x7ff65bdc15c2]\n\tchromedriver!(No symbol) [0x7ff65bde74a1]\n\tchromedriver!(No symbol) [0x7ff65be61320]\n\tchromedriver!(No symbol) [0x7ff65be7e4f2]\n\tchromedriver!(No symbol) [0x7ff65be237cc]\n\tchromedriver!(No symbol) [0x7ff65be246f3]\n\tchromedriver!GetHandleVerifier [0x7ff65c8cb79b+635d9b]\n\tchromedriver!GetHandleVerifier [0x7ff65c8c5ac6+6300c6]\n\tchromedriver!GetHandleVerifier [0x7ff65c8ebcee+6562ee]\n\tchromedriver!GetHandleVerifier [0x7ff65c2c8ffe+335fe]\n\tchromedriver!GetHandleVerifier [0x7ff65c2d147c+3ba7c]\n\tchromedriver!GetHandleVerifier [0x7ff65c2b4d64+1f364]\n\tchromedriver!GetHandleVerifier [0x7ff65c2b4ef4+1f4f4]\n\tchromedriver!GetHandleVerifier [0x7ff65c297d97+2397]\n\tKERNEL32!BaseThreadInitThunk [0x7ffd73c4ccb7+17]\n\tntdll!RtlUserThreadStart [0x7ffd74f6ad6c+2c]\n",
+    "criado_em": "2026-08-14T03:17:44.704Z",
+    "atualizado_em": "2026-08-14T03:18:35.885Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 4,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "pendente",
+    "dados": {},
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "",
+    "mensagem_erro": "Aguardando captcha no Chrome...",
+    "criado_em": "2026-08-14T03:18:46.998Z",
+    "atualizado_em": "2026-08-14T03:18:46.998Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 5,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "erro",
+    "dados": {},
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "",
+    "mensagem_erro": "Message: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=151.0.7922.110)\nStacktrace:\n\tchromedriver!GetHandleVerifier [0x7ff65c2aabb5+151b5]\n\tchromedriver!GetHandleVerifier [0x7ff65c2aac10+15210]\n\tchromedriver!(No symbol) [0x7ff65bdd5d6d]\n\tchromedriver!(No symbol) [0x7ff65bdacc52]\n\tchromedriver!(No symbol) [0x7ff65be610c6]\n\tchromedriver!(No symbol) [0x7ff65be7e4f2]\n\tchromedriver!(No symbol) [0x7ff65be237cc]\n\tchromedriver!(No symbol) [0x7ff65be246f3]\n\tchromedriver!GetHandleVerifier [0x7ff65c8cb79b+635d9b]\n\tchromedriver!GetHandleVerifier [0x7ff65c8c5ac6+6300c6]\n\tchromedriver!GetHandleVerifier [0x7ff65c8ebcee+6562ee]\n\tchromedriver!GetHandleVerifier [0x7ff65c2c8ffe+335fe]\n\tchromedriver!GetHandleVerifier [0x7ff65c2d147c+3ba7c]\n\tchromedriver!GetHandleVerifier [0x7ff65c2b4d64+1f364]\n\tchromedriver!GetHandleVerifier [0x7ff65c2b4ef4+1f4f4]\n\tchromedriver!GetHandleVerifier [0x7ff65c297d97+2397]\n\tKERNEL32!BaseThreadInitThunk [0x7ffd73c4ccb7+17]\n\tntdll!RtlUserThreadStart [0x7ffd74f6ad6c+2c]\n",
+    "criado_em": "2026-08-14T03:20:34.799Z",
+    "atualizado_em": "2026-08-14T03:21:03.228Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 6,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "erro",
+    "dados": {},
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "",
+    "mensagem_erro": "Message: invalid session id: session deleted as the browser has closed the connection\nfrom disconnected: not connected to DevTools\n  (Session info: chrome=151.0.7922.110); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tchromedriver!GetHandleVerifier [0x7ff65c2aabb5+151b5]\n\tchromedriver!GetHandleVerifier [0x7ff65c2aac10+15210]\n\tchromedriver!(No symbol) [0x7ff65bdd5d6d]\n\tchromedriver!(No symbol) [0x7ff65bdc15c2]\n\tchromedriver!(No symbol) [0x7ff65bde74a1]\n\tchromedriver!(No symbol) [0x7ff65be61320]\n\tchromedriver!(No symbol) [0x7ff65be7e4f2]\n\tchromedriver!(No symbol) [0x7ff65be237cc]\n\tchromedriver!(No symbol) [0x7ff65be246f3]\n\tchromedriver!GetHandleVerifier [0x7ff65c8cb79b+635d9b]\n\tchromedriver!GetHandleVerifier [0x7ff65c8c5ac6+6300c6]\n\tchromedriver!GetHandleVerifier [0x7ff65c8ebcee+6562ee]\n\tchromedriver!GetHandleVerifier [0x7ff65c2c8ffe+335fe]\n\tchromedriver!GetHandleVerifier [0x7ff65c2d147c+3ba7c]\n\tchromedriver!GetHandleVerifier [0x7ff65c2b4d64+1f364]\n\tchromedriver!GetHandleVerifier [0x7ff65c2b4ef4+1f4f4]\n\tchromedriver!GetHandleVerifier [0x7ff65c297d97+2397]\n\tKERNEL32!BaseThreadInitThunk [0x7ffd73c4ccb7+17]\n\tntdll!RtlUserThreadStart [0x7ffd74f6ad6c+2c]\n",
+    "criado_em": "2026-08-14T03:22:08.315Z",
+    "atualizado_em": "2026-08-14T03:22:48.427Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 7,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "sucesso",
+    "dados": {
+      "campos": {
+        "Assentamentos rurais ?": "Não",
+        "Auto de Infração ?": "Não",
+        "Autorização de supressão da vegetação ?": "Não",
+        "Balanço ambiental (Código Florestal)": "Regularize-se (PRA)",
+        "Condição do imóvel ?": "Em análise",
+        "Código CAR ?": "AC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7",
+        "Código(s) CAR de imóvel(eis) rural(ais) em sobreposição ? +": "Sim",
+        "Desembargo ambiental ?": "Não",
+        "Desmatamento PRODES ?": "Não",
+        "Desmatamento PRODES² ³ ?": "0,0 (ha)",
+        "Déficit de reserva legal ?": "0 (ha)",
+        "Déficit de área de preservação permanente ?": "0,10 (ha)",
+        "Elegibilidade ao Floresta+ Amazônia ⁴ ?": "Inapto",
+        "Embargo ambiental ?": "Não",
+        "Embargos ?": "Não",
+        "Excedente de reserva legal ?": "0 (ha)",
+        "Floresta pública não destinada ?": "Sim",
+        "Floresta pública não destinada ? +": "Sim",
+        "Geolocalização ? +": "Latitude: -10.209896281423916\nLongitude: -67.48944517984762",
+        "Número de módulos fiscais ?": "1,01",
+        "Possui termo de compromisso ambiental (TCA) ? ?": "Não",
+        "Remanescente de vegetação nativa ? +": "Não",
+        "Sistema de Gestão Fundiária (SIGEF) ?": "Não",
+        "Situação do CAR¹ ?": "Apto",
+        "Situação do imóvel ?": "Ativo",
+        "Sobreposição com polígonos de desmatamento PRODES³ ?": "Não",
+        "Sítios arqueológicos ?": "Não",
+        "Tamanho do imóvel ?": "Possui até 4 módulos fiscais",
+        "Terra Indígena ?": "Não",
+        "Terras Indígenas ?": "Não",
+        "Terras indígenas ?": "Não",
+        "Território quilombola ?": "Não",
+        "Tipo do imóvel ?": "IRU (Imóvel Rural)",
+        "Trabalho análogo à escravidão ?": "Não",
+        "Trabalho escravo ?": "Não",
+        "Unidade de Conservação ?": "Não",
+        "Unidades de Conservação ?": "Não",
+        "Vegetação nativa ?": "37,3 (ha)",
+        "Área consolidada ?": "63,8 (ha)",
+        "Área de cultivo de soja ?": "0 (ha)",
+        "Área do imóvel ?": "101 (ha)",
+        "Áreas licenciadas de soja ?": "Não"
+      },
+      "secoes": [
+        {
+          "linhas": [
+            {
+              "rotulo": "Dados do imóvel no CAR",
+              "valor": ""
+            },
+            {
+              "rotulo": "Código CAR ?",
+              "valor": "AC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7"
+            },
+            {
+              "rotulo": "Geolocalização ? +",
+              "valor": "Latitude: -10.209896281423916\nLongitude: -67.48944517984762"
+            },
+            {
+              "rotulo": "Área do imóvel ?",
+              "valor": "101 (ha)"
+            },
+            {
+              "rotulo": "Número de módulos fiscais ?",
+              "valor": "1,01"
+            },
+            {
+              "rotulo": "Situação do imóvel ?",
+              "valor": "Ativo"
+            },
+            {
+              "rotulo": "Condição do imóvel ?",
+              "valor": "Em análise"
+            },
+            {
+              "rotulo": "Tipo do imóvel ?",
+              "valor": "IRU (Imóvel Rural)"
+            }
+          ],
+          "titulo": "Data da emissão: 14/8/2026Atualizado em: 11/08/2026Carregando relatório"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Protocolo de monitoramento de fornecedores de gado da Amazônia (MPF)",
+              "valor": ""
+            },
+            {
+              "rotulo": "Situação do CAR¹ ?",
+              "valor": "Apto"
+            },
+            {
+              "rotulo": "Desmatamento PRODES² ³ ?",
+              "valor": "0,0 (ha)"
+            },
+            {
+              "rotulo": "Terras Indígenas ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Unidades de Conservação ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Território quilombola ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Embargos ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Trabalho escravo ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Dados do imóvel no CARCAR regularizadoCAR regularizado\nCódigo CAR\n?Código do Cadastro Ambiental Rural. Fonte: SEMA-AC\n\nAC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7\n\nGeolocalização\n?Coordenadas geográficas do centróide do imóvel rural\n+Clique para alternar entre mais ou menos detalhes.\nLatitude: -10.209896281423916Longitude: -67.48944517984762Latitude: -10.209896281423916Longitude: -67.48944517984762Datum SIRGAS 2000 (SRID:4674)\n\nÁrea do imóvel\n?Área do imóvel rural (hectares)\n\n  101 (ha)\n\nNúmero de módulos fiscais\n?Número de módulos fiscais\n\n    1,01\n\nSituação do imóvel\n?Situação do imóvel rural no CAR. Fonte: SEMA-AC\n\nAtivo\n\nCondição do imóvel\n?Etapa em que o cadastro do imóvel rural se encontra em relação ao processo de análise. Fonte: SEMA-AC\n\nEm análise\n\nTipo do imóvel\n?Tipo do imóvel rural no CAR. Fonte: SEMA-AC\n\nIRU (Imóvel Rural)"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Projeto Floresta + Amazônia",
+              "valor": ""
+            },
+            {
+              "rotulo": "Elegibilidade ao Floresta+ Amazônia ⁴ ?",
+              "valor": "Inapto"
+            },
+            {
+              "rotulo": "Tamanho do imóvel ?",
+              "valor": "Possui até 4 módulos fiscais"
+            },
+            {
+              "rotulo": "Remanescente de vegetação nativa ? +",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Desmatamento PRODES ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Embargos ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Floresta pública não destinada ?",
+              "valor": "Sim"
+            },
+            {
+              "rotulo": "Terra Indígena ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Unidade de Conservação ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Protocolo de monitoramento de fornecedores de gado da Amazônia (MPF)CAR aptoCAR apto\nSituação do CAR¹\n?Situação atual do CAR com base nos critérios e parâmetros de monitoramento do Protocolo de Monitoramento de fornecedores de gado da Amazônia. São analisados automaticamente todos os imóveis rurais (IRU) com ou sem movimentação de gado identificada. Imóveis com  desmatamento >6.25 e Autorização de supressão de vegetação nativa (ASV) são classificados como \"apto\".\n\nApto\n\nDesmatamento PRODES² ³\n?Sobreposição com polígonos de desmatamento ≥ 6,25 ha do Sistema PRODES posteriores a 01/08/2008 (PRODES 2009). Desconsiderado quando observado ASV. Fonte: PRODES/INPE.\n\n   0,0 (ha)\n\nTerras Indígenas\n?Sobreposição com Terra Indígena em situação \"Declarada\" ou fase mais avançada do processo de demarcação de TI.  Limiares de sobreposição aplicados conforme protocolo de monitoramento do MPF¹. Fonte: FUNAI\n\nNão\n\nUnidades de Conservação\n?Sobreposição com UC exceto APA e RPPN,  em bases cartográficas dos órgãos públicos competentes.   Limiares de sobreposição aplicados conforme protocolo de monitoramento do MPF¹. Fonte: MMA.\n\nNão\n\nTerritório quilombola\n?Sobreposição com Território Quilombola a partir da existência do Relatório Técnico de Identificação de Delimitação (RTID) emitido.\nLimiar de sobreposição aplicado conforme protocolo de monitoramento do MPF¹. Fonte: INCRA\n\nNão\n\nEmbargos\n?Ocorrência de embargo ambiental após 2008. Desconsiderado quando desembargado. Fonte: IBAMA, ICMBIO e IMAC.\n\nNão\n\nTrabalho escravo\n?Proprietário ou arrendatário/parceiro está presente na Lista Suja do Trabalho Escravo. Fonte: MTE.\n\nNão"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Cobertura do solo",
+              "valor": ""
+            },
+            {
+              "rotulo": "Vegetação nativa ?",
+              "valor": "37,3 (ha)"
+            },
+            {
+              "rotulo": "Área consolidada ?",
+              "valor": "63,8 (ha)"
+            },
+            {
+              "rotulo": "Área de cultivo de soja ?",
+              "valor": "0 (ha)"
+            }
+          ],
+          "titulo": "Projeto Floresta + AmazôniaImóvel inapto ao projeto Floresta+ AmazôniaImóvel inapto ao projeto Floresta+ Amazônia\nElegibilidade ao Floresta+ Amazônia ⁴\n?\n Elegibilidade ao Projeto Floresta + Amazônia, considerando os seguintes critérios:\n\n- Imóvel do tipo IRU, desde que não esteja cancelado ou suspenso\n- Imóvel de até 4 módulos fiscais;  \n- Percentual mínimo de 50% de vegetação nativa remanescente, com área mínima de 1 ha; \n- Ausência de desmatamento PRODES após 22/07/2008 (tolerância: até 6,25 ha);\n- Ausência de embargos ambientais (IBAMA, IMAC);\n- Ausência de sobreposição com Florestas Públicas Não Destinadas. Não contempla a verificação de título de propriedade nem a situação de regularização fundiária perante o INCRA (tolerância: 5%); \n- Ausência de sobreposição com Terras Indígenas em situação Declarada ou em fase mais avançada do processo de demarcação (tolerância: 0%);\n- Ausência de sobreposição com Unidades de Conservação, exceto APA e RPPN (tolerância: 5%).\n\n\nInapto\n\nTamanho do imóvel\n?Indica se o imóvel rural possui área de até 4 Módulos Fiscais, conforme critério de elegibilidade do Projeto Floresta+ Amazônia.\n\nPossui até 4 módulos fiscais\n\nRemanescente de vegetação nativa\n?Percentual de vegetação nativa remanescente acima de 50%, com área mínima de 1 ha. \nPara os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, a vegetação nativa é estimada por meio de modelo computacional de análise automatizada.\n\nFonte: Mappia-AC e PRODES/INPE.\n+Clique para alternar entre mais ou menos detalhes.\nNão Não 37%\n\nDesmatamento PRODES\n?Sobreposição com polígonos de desmatamento ≥ 6,25 ha do Sistema PRODES posteriores a 01/08/2008 (PRODES 2009). Fonte: PRODES/INPE.\n\nNão \n\nEmbargos\n?Ocorrência de embargo ambiental após 2008. Desconsiderado quando desembargado. Fonte: IBAMA e IMAC.\n\nNão\n\nFloresta pública não destinada\n?Sobreposição com Floresta pública não destinada (tipo B).  Tolerância de 5%. A análise não contempla a verificação de título de propriedade ou a situação de regularização fundiária perante o INCRA. Fonte: SFB.\n\nSim \n\nTerra Indígena\n?Sobreposição com Terra Indígena em situação \"Declarada\" ou fase mais avançada do processo de demarcação de TI. Sem tolerância. Fonte: FUNAI.\n\nNão \n\nUnidade de Conservação\n?Sobreposição com UC exceto APA e RPPN.  Tolerância de 5% . Fonte: MMA.\n\nNão"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Balanço ambiental (Código Florestal)",
+              "valor": "Regularize-se (PRA)"
+            },
+            {
+              "rotulo": "Excedente de reserva legal ?",
+              "valor": "0 (ha)"
+            },
+            {
+              "rotulo": "Déficit de reserva legal ?",
+              "valor": "0 (ha)"
+            },
+            {
+              "rotulo": "Déficit de área de preservação permanente ?",
+              "valor": "0,10 (ha)"
+            },
+            {
+              "rotulo": "Sobreposição com polígonos de desmatamento PRODES³ ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Possui termo de compromisso ambiental (TCA) ? ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Cobertura do solo\nVegetação nativa\n?Área total de vegetação nativa remanescente (hectares). Para os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, a vegetação nativa é estimada por meio de modelo computacional de análise automatizada.\n\nFonte: Mappia-AC e PRODES/INPE.\n\n   37,3 (ha)\n\nÁrea consolidada\n?Área convertida/convertida. A área consolidada consiste na área com ocupação antrópica preexistente a 22 de julho de 2008, com edificações, benfeitorias ou atividades agrossilvipastoris, admitida, neste último caso, a adoção do regime de pousio.\nPara os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, a  área consolidada é estimada por meio de modelo computacional de análise automatizada.\nFonte: Mappia-AC e PRODES/INPE.\n\n   63,8 (ha)\n\nÁrea de cultivo de soja\n?Propriedade rural com cultivo de soja (≥ 1 ha). Fonte: Serasa Experian S.A. - Agribusiness\n\n0 (ha)"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Conformidade socioambiental",
+              "valor": ""
+            },
+            {
+              "rotulo": "Auto de Infração ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Embargo ambiental ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Desembargo ambiental ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Autorização de supressão da vegetação ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Áreas licenciadas de soja ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Trabalho análogo à escravidão ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Sítios arqueológicos ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Balanço ambiental (Código Florestal)CAR com déficit de Reserva Legal ou déficit de APP e sem desmatamento pós 2008CAR com déficit de Reserva Legal ou déficit de APP e sem desmatamento pós 2008Regularize-se (PRA)\nExcedente de reserva legal\n?Área de vegetação nativa acima do requerido para Reserva Legal (hectares).\n\n   0 (ha)\n\nDéficit de reserva legal\n?Déficit de vegetação para fins de recomposição da Reserva Legal (hectares). Propostas de compensação de RL fora do CAR não consideradas.\n\n   0 (ha)\n\nDéficit de área de preservação permanente\n?Déficit de vegetação para fins de recomposição de Áreas de Preservação Permanente (hectares).  Para os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, o déficit de APP é estimado por meio de modelo computacional de análise automatizada.\n\n   0,10 (ha)\n\nSobreposição com polígonos de desmatamento PRODES³\n?Sobreposição com polígonos de desmatamento ≥ 6.25 hectares do Sistema PRODES após 31/07/2008. Fonte: PRODES/INPE\n\nNão\n\nPossui termo de compromisso ambiental (TCA) ?\n?CAR em processo de regularização ambiental no \"Programa de Regularização Ambiental\" (PRA), com termo de compromisso ambiental (TCA) firmado com órgão ambiental estadual.\n\nNão"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Sobreposições",
+              "valor": ""
+            },
+            {
+              "rotulo": "Código(s) CAR de imóvel(eis) rural(ais) em sobreposição ? +",
+              "valor": "Sim"
+            },
+            {
+              "rotulo": "Terras indígenas ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Território quilombola ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Unidades de Conservação ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Assentamentos rurais ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Floresta pública não destinada ? +",
+              "valor": "Sim"
+            },
+            {
+              "rotulo": "Sistema de Gestão Fundiária (SIGEF) ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Conformidade socioambientalNão foram detectadas infrações, embargos ou sanções administrativas vigentes.Não foram detectadas infrações, embargos ou sanções administrativas vigentes.\nAuto de Infração\n?Ocorrência de auto de infração ambiental. Fontes: IBAMA e ICMBIO\n\nNão\n\nEmbargo ambiental\n?Ocorrência de embargo ambiental. Fontes: ICMBio, IBAMA e IMAC.\n\nNão\n\nDesembargo ambiental\n?Ocorrência de desembargo ambiental. Fonte: IBAMA.\n\nNão\n\nAutorização de supressão da vegetação\n?Ocorrências de Autorização de Supressão de Vegetação (ASV), Uso Alternativo do Solo (UAS) ou Autorização de Exploração Floresta Plantada( EFP). Fonte: Sinaflor-IBAMA.\n\nNão\n\nÁreas licenciadas de soja\n?Ocorrência de licenciamento de áreas de soja, acima de 1 ha. Fonte: IMAC.\n\nNão\n\nTrabalho análogo à escravidão\n?Proprietário ou arrendatário/parceiro está presente na Lista Suja do Trabalho Escravo. Fonte: MTE.\n\nNão\n\nSítios arqueológicos\n?Ocorrência de sítios arqueológicos. Fonte: IPHAN.\n\nNão"
+        }
+      ],
+      "texto_resumo": "\n\nAtualizado em: 11/08/2026\nCarregando relatório\nDados do imóvel no CAR\t\nCódigo CAR ?\tAC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7\nGeolocalização ? +\t\nLatitude: -10.209896281423916\nLongitude: -67.48944517984762\n\nÁrea do imóvel ?\t101 (ha)\nNúmero de módulos fiscais ?\t1,01\nSituação do imóvel ?\tAtivo\nCondição do imóvel ?\tEm análise\nTipo do imóvel ?\tIRU (Imóvel Rural)\n\nProtocolo de monitoramento de fornecedores de gado da Amazônia (MPF)\t\nSituação do CAR¹ ?\tApto\nDesmatamento PRODES² ³ ?\t0,0 (ha)\nTerras Indígenas ?\tNão\nUnidades de Conservação ?\tNão\nTerritório quilombola ?\tNão\nEmbargos ?\tNão\nTrabalho escravo ?\tNão\n\nProjeto Floresta + Amazônia\t\nElegibilidade ao Floresta+ Amazônia ⁴ ?\tInapto\nTamanho do imóvel ?\tPossui até 4 módulos fiscais\nRemanescente de vegetação nativa ? +\t\nNão\n\nDesmatamento PRODES ?\tNão\nEmbargos ?\tNão\nFloresta pública não destinada ?\tSim\nTerra Indígena ?\tNão\nUnidade de Conservação ?\tNão\n\nCobertura do solo\t\nVegetação nativa ?\t37,3 (ha)\nÁrea consolidada ?\t63,8 (ha)\nÁrea de cultivo de soja ?\t0 (ha)\n\nBalanço ambiental (Código Florestal)\tRegularize-se (PRA)\nExcedente de reserva legal ?\t0 (ha)\nDéficit de reserva legal ?\t0 (ha)\nDéficit de área de preservação permanente ?\t0,10 (ha)\nSobreposição com polígonos de desmatamento PRODES³ ?\tNão\nPossui termo de compromisso ambiental (TCA) ? ?\tNão\n\nConformidade socioambiental\t\nAuto de Infração ?\tNão\nEmbargo ambiental ?\tNão\nDesembargo ambiental ?\tNão\nAutorização de supressão da vegetação ?\tNão\nÁreas licenciadas de soja ?\tNão\nTrabalho análogo à escravidão ?\tNão\nSítios arqueológicos ?\tNão\n\nSobreposições\t\nCódigo(s) CAR de imóvel(eis) rural(ais) em sobreposição ? +\t\nSim\n\nTerras indígenas ?\tNão\nTerritório quilombola ?\tNão\nUnidades de Conservação ?\tNão\nAssentamentos rurais ?\tNão\nFloresta pública não destinada ? +\t\nSim\n\nSistema de Gestão Fundiária (SIGEF) ?\tNão\n\n¹ Protocolo de monitoramento de fornecedores de gado da Amazônia (Ministério Público Federal) - Versão 2.0\n² Esta análise automática verifica exclusivamente a existência de documentos que autorizam a supressão de vegetação nativa, sem realizar a comparação entre os mapas das áreas autorizadas, as áreas efetivamente desmatadas e o período de vigência das autorizações. Recomenda-se a consulta à SEMA-AC para avaliações mais detalhadas.\n³ Para os casos em que o usuário identifique discordância com a classificação do Prodes, deve-se solicitar a revisão do dado Prodes, através do canal de atendimento BiomasBR – inpe.br/canal-atendimento-biomasbr/.\nPara mais informações, acesse aqui.\n⁴ A elegibilidade ao Projeto Floresta+ é estimada por análise automática apenas para imóveis cuja análise pela SEMA-AC ainda não foi concluída. Para imóveis já analisados, prevalecem as informações oficiais disponibilizadas pela SEMA-AC em seus demais canais institucionais.\nAbrir servidor de mapas em janela separada"
+    },
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "11/08/2026",
+    "mensagem_erro": "",
+    "criado_em": "2026-08-14T03:25:12.007Z",
+    "atualizado_em": "2026-08-14T03:25:29.673Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 8,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "pendente",
+    "dados": {},
+    "parecer": "",
+    "alertas_criticos": "",
+    "pdf": "",
+    "atualizado_em_site": "",
+    "mensagem_erro": "Abrindo Chrome no Selo Verde AC…",
+    "criado_em": "2026-08-14T03:50:16.884Z",
+    "atualizado_em": "2026-08-14T03:50:16.884Z"
+  }
+},
+{
+  "model": "buscarrural.consultahistorico",
+  "pk": 9,
+  "fields": {
+    "usuario": [
+      "admin"
+    ],
+    "tipo": "selo_verde_acre",
+    "numero_car": "AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7",
+    "status": "sucesso",
+    "dados": {
+      "campos": {
+        "Assentamentos rurais ?": "Não",
+        "Auto de Infração ?": "Não",
+        "Autorização de supressão da vegetação ?": "Não",
+        "Balanço ambiental (Código Florestal)": "Regularize-se (PRA)",
+        "Condição do imóvel ?": "Em análise",
+        "Código CAR ?": "AC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7",
+        "Código(s) CAR de imóvel(eis) rural(ais) em sobreposição ? +": "Sim",
+        "Desembargo ambiental ?": "Não",
+        "Desmatamento PRODES ?": "Não",
+        "Desmatamento PRODES² ³ ?": "0,0 (ha)",
+        "Déficit de reserva legal ?": "0 (ha)",
+        "Déficit de área de preservação permanente ?": "0,10 (ha)",
+        "Elegibilidade ao Floresta+ Amazônia ⁴ ?": "Inapto",
+        "Embargo ambiental ?": "Não",
+        "Embargos ?": "Não",
+        "Excedente de reserva legal ?": "0 (ha)",
+        "Floresta pública não destinada ?": "Sim",
+        "Floresta pública não destinada ? +": "Sim",
+        "Geolocalização ? +": "Latitude: -10.209896281423916\nLongitude: -67.48944517984762",
+        "Número de módulos fiscais ?": "1,01",
+        "Possui termo de compromisso ambiental (TCA) ? ?": "Não",
+        "Remanescente de vegetação nativa ? +": "Não",
+        "Sistema de Gestão Fundiária (SIGEF) ?": "Não",
+        "Situação do CAR¹ ?": "Apto",
+        "Situação do imóvel ?": "Ativo",
+        "Sobreposição com polígonos de desmatamento PRODES³ ?": "Não",
+        "Sítios arqueológicos ?": "Não",
+        "Tamanho do imóvel ?": "Possui até 4 módulos fiscais",
+        "Terra Indígena ?": "Não",
+        "Terras Indígenas ?": "Não",
+        "Terras indígenas ?": "Não",
+        "Território quilombola ?": "Não",
+        "Tipo do imóvel ?": "IRU (Imóvel Rural)",
+        "Trabalho análogo à escravidão ?": "Não",
+        "Trabalho escravo ?": "Não",
+        "Unidade de Conservação ?": "Não",
+        "Unidades de Conservação ?": "Não",
+        "Vegetação nativa ?": "37,3 (ha)",
+        "Área consolidada ?": "63,8 (ha)",
+        "Área de cultivo de soja ?": "0 (ha)",
+        "Área do imóvel ?": "101 (ha)",
+        "Áreas licenciadas de soja ?": "Não"
+      },
+      "secoes": [
+        {
+          "linhas": [
+            {
+              "rotulo": "Dados do imóvel no CAR",
+              "valor": ""
+            },
+            {
+              "rotulo": "Código CAR ?",
+              "valor": "AC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7"
+            },
+            {
+              "rotulo": "Geolocalização ? +",
+              "valor": "Latitude: -10.209896281423916\nLongitude: -67.48944517984762"
+            },
+            {
+              "rotulo": "Área do imóvel ?",
+              "valor": "101 (ha)"
+            },
+            {
+              "rotulo": "Número de módulos fiscais ?",
+              "valor": "1,01"
+            },
+            {
+              "rotulo": "Situação do imóvel ?",
+              "valor": "Ativo"
+            },
+            {
+              "rotulo": "Condição do imóvel ?",
+              "valor": "Em análise"
+            },
+            {
+              "rotulo": "Tipo do imóvel ?",
+              "valor": "IRU (Imóvel Rural)"
+            }
+          ],
+          "titulo": "Data da emissão: 14/8/2026Atualizado em: 11/08/2026Carregando relatório"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Protocolo de monitoramento de fornecedores de gado da Amazônia (MPF)",
+              "valor": ""
+            },
+            {
+              "rotulo": "Situação do CAR¹ ?",
+              "valor": "Apto"
+            },
+            {
+              "rotulo": "Desmatamento PRODES² ³ ?",
+              "valor": "0,0 (ha)"
+            },
+            {
+              "rotulo": "Terras Indígenas ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Unidades de Conservação ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Território quilombola ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Embargos ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Trabalho escravo ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Dados do imóvel no CARCAR regularizadoCAR regularizado\nCódigo CAR\n?Código do Cadastro Ambiental Rural. Fonte: SEMA-AC\n\nAC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7\n\nGeolocalização\n?Coordenadas geográficas do centróide do imóvel rural\n+Clique para alternar entre mais ou menos detalhes.\nLatitude: -10.209896281423916Longitude: -67.48944517984762Latitude: -10.209896281423916Longitude: -67.48944517984762Datum SIRGAS 2000 (SRID:4674)\n\nÁrea do imóvel\n?Área do imóvel rural (hectares)\n\n  101 (ha)\n\nNúmero de módulos fiscais\n?Número de módulos fiscais\n\n    1,01\n\nSituação do imóvel\n?Situação do imóvel rural no CAR. Fonte: SEMA-AC\n\nAtivo\n\nCondição do imóvel\n?Etapa em que o cadastro do imóvel rural se encontra em relação ao processo de análise. Fonte: SEMA-AC\n\nEm análise\n\nTipo do imóvel\n?Tipo do imóvel rural no CAR. Fonte: SEMA-AC\n\nIRU (Imóvel Rural)"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Projeto Floresta + Amazônia",
+              "valor": ""
+            },
+            {
+              "rotulo": "Elegibilidade ao Floresta+ Amazônia ⁴ ?",
+              "valor": "Inapto"
+            },
+            {
+              "rotulo": "Tamanho do imóvel ?",
+              "valor": "Possui até 4 módulos fiscais"
+            },
+            {
+              "rotulo": "Remanescente de vegetação nativa ? +",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Desmatamento PRODES ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Embargos ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Floresta pública não destinada ?",
+              "valor": "Sim"
+            },
+            {
+              "rotulo": "Terra Indígena ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Unidade de Conservação ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Protocolo de monitoramento de fornecedores de gado da Amazônia (MPF)CAR aptoCAR apto\nSituação do CAR¹\n?Situação atual do CAR com base nos critérios e parâmetros de monitoramento do Protocolo de Monitoramento de fornecedores de gado da Amazônia. São analisados automaticamente todos os imóveis rurais (IRU) com ou sem movimentação de gado identificada. Imóveis com  desmatamento >6.25 e Autorização de supressão de vegetação nativa (ASV) são classificados como \"apto\".\n\nApto\n\nDesmatamento PRODES² ³\n?Sobreposição com polígonos de desmatamento ≥ 6,25 ha do Sistema PRODES posteriores a 01/08/2008 (PRODES 2009). Desconsiderado quando observado ASV. Fonte: PRODES/INPE.\n\n   0,0 (ha)\n\nTerras Indígenas\n?Sobreposição com Terra Indígena em situação \"Declarada\" ou fase mais avançada do processo de demarcação de TI.  Limiares de sobreposição aplicados conforme protocolo de monitoramento do MPF¹. Fonte: FUNAI\n\nNão\n\nUnidades de Conservação\n?Sobreposição com UC exceto APA e RPPN,  em bases cartográficas dos órgãos públicos competentes.   Limiares de sobreposição aplicados conforme protocolo de monitoramento do MPF¹. Fonte: MMA.\n\nNão\n\nTerritório quilombola\n?Sobreposição com Território Quilombola a partir da existência do Relatório Técnico de Identificação de Delimitação (RTID) emitido.\nLimiar de sobreposição aplicado conforme protocolo de monitoramento do MPF¹. Fonte: INCRA\n\nNão\n\nEmbargos\n?Ocorrência de embargo ambiental após 2008. Desconsiderado quando desembargado. Fonte: IBAMA, ICMBIO e IMAC.\n\nNão\n\nTrabalho escravo\n?Proprietário ou arrendatário/parceiro está presente na Lista Suja do Trabalho Escravo. Fonte: MTE.\n\nNão"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Cobertura do solo",
+              "valor": ""
+            },
+            {
+              "rotulo": "Vegetação nativa ?",
+              "valor": "37,3 (ha)"
+            },
+            {
+              "rotulo": "Área consolidada ?",
+              "valor": "63,8 (ha)"
+            },
+            {
+              "rotulo": "Área de cultivo de soja ?",
+              "valor": "0 (ha)"
+            }
+          ],
+          "titulo": "Projeto Floresta + AmazôniaImóvel inapto ao projeto Floresta+ AmazôniaImóvel inapto ao projeto Floresta+ Amazônia\nElegibilidade ao Floresta+ Amazônia ⁴\n?\n Elegibilidade ao Projeto Floresta + Amazônia, considerando os seguintes critérios:\n\n- Imóvel do tipo IRU, desde que não esteja cancelado ou suspenso\n- Imóvel de até 4 módulos fiscais;  \n- Percentual mínimo de 50% de vegetação nativa remanescente, com área mínima de 1 ha; \n- Ausência de desmatamento PRODES após 22/07/2008 (tolerância: até 6,25 ha);\n- Ausência de embargos ambientais (IBAMA, IMAC);\n- Ausência de sobreposição com Florestas Públicas Não Destinadas. Não contempla a verificação de título de propriedade nem a situação de regularização fundiária perante o INCRA (tolerância: 5%); \n- Ausência de sobreposição com Terras Indígenas em situação Declarada ou em fase mais avançada do processo de demarcação (tolerância: 0%);\n- Ausência de sobreposição com Unidades de Conservação, exceto APA e RPPN (tolerância: 5%).\n\n\nInapto\n\nTamanho do imóvel\n?Indica se o imóvel rural possui área de até 4 Módulos Fiscais, conforme critério de elegibilidade do Projeto Floresta+ Amazônia.\n\nPossui até 4 módulos fiscais\n\nRemanescente de vegetação nativa\n?Percentual de vegetação nativa remanescente acima de 50%, com área mínima de 1 ha. \nPara os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, a vegetação nativa é estimada por meio de modelo computacional de análise automatizada.\n\nFonte: Mappia-AC e PRODES/INPE.\n+Clique para alternar entre mais ou menos detalhes.\nNão Não 37%\n\nDesmatamento PRODES\n?Sobreposição com polígonos de desmatamento ≥ 6,25 ha do Sistema PRODES posteriores a 01/08/2008 (PRODES 2009). Fonte: PRODES/INPE.\n\nNão \n\nEmbargos\n?Ocorrência de embargo ambiental após 2008. Desconsiderado quando desembargado. Fonte: IBAMA e IMAC.\n\nNão\n\nFloresta pública não destinada\n?Sobreposição com Floresta pública não destinada (tipo B).  Tolerância de 5%. A análise não contempla a verificação de título de propriedade ou a situação de regularização fundiária perante o INCRA. Fonte: SFB.\n\nSim \n\nTerra Indígena\n?Sobreposição com Terra Indígena em situação \"Declarada\" ou fase mais avançada do processo de demarcação de TI. Sem tolerância. Fonte: FUNAI.\n\nNão \n\nUnidade de Conservação\n?Sobreposição com UC exceto APA e RPPN.  Tolerância de 5% . Fonte: MMA.\n\nNão"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Balanço ambiental (Código Florestal)",
+              "valor": "Regularize-se (PRA)"
+            },
+            {
+              "rotulo": "Excedente de reserva legal ?",
+              "valor": "0 (ha)"
+            },
+            {
+              "rotulo": "Déficit de reserva legal ?",
+              "valor": "0 (ha)"
+            },
+            {
+              "rotulo": "Déficit de área de preservação permanente ?",
+              "valor": "0,10 (ha)"
+            },
+            {
+              "rotulo": "Sobreposição com polígonos de desmatamento PRODES³ ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Possui termo de compromisso ambiental (TCA) ? ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Cobertura do solo\nVegetação nativa\n?Área total de vegetação nativa remanescente (hectares). Para os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, a vegetação nativa é estimada por meio de modelo computacional de análise automatizada.\n\nFonte: Mappia-AC e PRODES/INPE.\n\n   37,3 (ha)\n\nÁrea consolidada\n?Área convertida/convertida. A área consolidada consiste na área com ocupação antrópica preexistente a 22 de julho de 2008, com edificações, benfeitorias ou atividades agrossilvipastoris, admitida, neste último caso, a adoção do regime de pousio.\nPara os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, a  área consolidada é estimada por meio de modelo computacional de análise automatizada.\nFonte: Mappia-AC e PRODES/INPE.\n\n   63,8 (ha)\n\nÁrea de cultivo de soja\n?Propriedade rural com cultivo de soja (≥ 1 ha). Fonte: Serasa Experian S.A. - Agribusiness\n\n0 (ha)"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Conformidade socioambiental",
+              "valor": ""
+            },
+            {
+              "rotulo": "Auto de Infração ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Embargo ambiental ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Desembargo ambiental ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Autorização de supressão da vegetação ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Áreas licenciadas de soja ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Trabalho análogo à escravidão ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Sítios arqueológicos ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Balanço ambiental (Código Florestal)CAR com déficit de Reserva Legal ou déficit de APP e sem desmatamento pós 2008CAR com déficit de Reserva Legal ou déficit de APP e sem desmatamento pós 2008Regularize-se (PRA)\nExcedente de reserva legal\n?Área de vegetação nativa acima do requerido para Reserva Legal (hectares).\n\n   0 (ha)\n\nDéficit de reserva legal\n?Déficit de vegetação para fins de recomposição da Reserva Legal (hectares). Propostas de compensação de RL fora do CAR não consideradas.\n\n   0 (ha)\n\nDéficit de área de preservação permanente\n?Déficit de vegetação para fins de recomposição de Áreas de Preservação Permanente (hectares).  Para os imóveis analisados pela SEMA-AC, os dados são provenientes dessa análise. Nos casos em que a análise ainda não foi realizada, o déficit de APP é estimado por meio de modelo computacional de análise automatizada.\n\n   0,10 (ha)\n\nSobreposição com polígonos de desmatamento PRODES³\n?Sobreposição com polígonos de desmatamento ≥ 6.25 hectares do Sistema PRODES após 31/07/2008. Fonte: PRODES/INPE\n\nNão\n\nPossui termo de compromisso ambiental (TCA) ?\n?CAR em processo de regularização ambiental no \"Programa de Regularização Ambiental\" (PRA), com termo de compromisso ambiental (TCA) firmado com órgão ambiental estadual.\n\nNão"
+        },
+        {
+          "linhas": [
+            {
+              "rotulo": "Sobreposições",
+              "valor": ""
+            },
+            {
+              "rotulo": "Código(s) CAR de imóvel(eis) rural(ais) em sobreposição ? +",
+              "valor": "Sim"
+            },
+            {
+              "rotulo": "Terras indígenas ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Território quilombola ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Unidades de Conservação ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Assentamentos rurais ?",
+              "valor": "Não"
+            },
+            {
+              "rotulo": "Floresta pública não destinada ? +",
+              "valor": "Sim"
+            },
+            {
+              "rotulo": "Sistema de Gestão Fundiária (SIGEF) ?",
+              "valor": "Não"
+            }
+          ],
+          "titulo": "Conformidade socioambientalNão foram detectadas infrações, embargos ou sanções administrativas vigentes.Não foram detectadas infrações, embargos ou sanções administrativas vigentes.\nAuto de Infração\n?Ocorrência de auto de infração ambiental. Fontes: IBAMA e ICMBIO\n\nNão\n\nEmbargo ambiental\n?Ocorrência de embargo ambiental. Fontes: ICMBio, IBAMA e IMAC.\n\nNão\n\nDesembargo ambiental\n?Ocorrência de desembargo ambiental. Fonte: IBAMA.\n\nNão\n\nAutorização de supressão da vegetação\n?Ocorrências de Autorização de Supressão de Vegetação (ASV), Uso Alternativo do Solo (UAS) ou Autorização de Exploração Floresta Plantada( EFP). Fonte: Sinaflor-IBAMA.\n\nNão\n\nÁreas licenciadas de soja\n?Ocorrência de licenciamento de áreas de soja, acima de 1 ha. Fonte: IMAC.\n\nNão\n\nTrabalho análogo à escravidão\n?Proprietário ou arrendatário/parceiro está presente na Lista Suja do Trabalho Escravo. Fonte: MTE.\n\nNão\n\nSítios arqueológicos\n?Ocorrência de sítios arqueológicos. Fonte: IPHAN.\n\nNão"
+        }
+      ],
+      "texto_resumo": "\n\nAtualizado em: 11/08/2026\nCarregando relatório\nDados do imóvel no CAR\t\nCódigo CAR ?\tAC-1200450-0B14DF3633204810ACDF1A96F5FC2DA7\nGeolocalização ? +\t\nLatitude: -10.209896281423916\nLongitude: -67.48944517984762\n\nÁrea do imóvel ?\t101 (ha)\nNúmero de módulos fiscais ?\t1,01\nSituação do imóvel ?\tAtivo\nCondição do imóvel ?\tEm análise\nTipo do imóvel ?\tIRU (Imóvel Rural)\n\nProtocolo de monitoramento de fornecedores de gado da Amazônia (MPF)\t\nSituação do CAR¹ ?\tApto\nDesmatamento PRODES² ³ ?\t0,0 (ha)\nTerras Indígenas ?\tNão\nUnidades de Conservação ?\tNão\nTerritório quilombola ?\tNão\nEmbargos ?\tNão\nTrabalho escravo ?\tNão\n\nProjeto Floresta + Amazônia\t\nElegibilidade ao Floresta+ Amazônia ⁴ ?\tInapto\nTamanho do imóvel ?\tPossui até 4 módulos fiscais\nRemanescente de vegetação nativa ? +\t\nNão\n\nDesmatamento PRODES ?\tNão\nEmbargos ?\tNão\nFloresta pública não destinada ?\tSim\nTerra Indígena ?\tNão\nUnidade de Conservação ?\tNão\n\nCobertura do solo\t\nVegetação nativa ?\t37,3 (ha)\nÁrea consolidada ?\t63,8 (ha)\nÁrea de cultivo de soja ?\t0 (ha)\n\nBalanço ambiental (Código Florestal)\tRegularize-se (PRA)\nExcedente de reserva legal ?\t0 (ha)\nDéficit de reserva legal ?\t0 (ha)\nDéficit de área de preservação permanente ?\t0,10 (ha)\nSobreposição com polígonos de desmatamento PRODES³ ?\tNão\nPossui termo de compromisso ambiental (TCA) ? ?\tNão\n\nConformidade socioambiental\t\nAuto de Infração ?\tNão\nEmbargo ambiental ?\tNão\nDesembargo ambiental ?\tNão\nAutorização de supressão da vegetação ?\tNão\nÁreas licenciadas de soja ?\tNão\nTrabalho análogo à escravidão ?\tNão\nSítios arqueológicos ?\tNão\n\nSobreposições\t\nCódigo(s) CAR de imóvel(eis) rural(ais) em sobreposição ? +\t\nSim\n\nTerras indígenas ?\tNão\nTerritório quilombola ?\tNão\nUnidades de Conservação ?\tNão\nAssentamentos rurais ?\tNão\nFloresta pública não destinada ? +\t\nSim\n\nSistema de Gestão Fundiária (SIGEF) ?\tNão\n\n¹ Protocolo de monitoramento de fornecedores de gado da Amazônia (Ministério Público Federal) - Versão 2.0\n² Esta análise automática verifica exclusivamente a existência de documentos que autorizam a supressão de vegetação nativa, sem realizar a comparação entre os mapas das áreas autorizadas, as áreas efetivamente desmatadas e o período de vigência das autorizações. Recomenda-se a consulta à SEMA-AC para avaliações mais detalhadas.\n³ Para os casos em que o usuário identifique discordância com a classificação do Prodes, deve-se solicitar a revisão do dado Prodes, através do canal de atendimento BiomasBR – inpe.br/canal-atendimento-biomasbr/.\nPara mais informações, acesse aqui.\n⁴ A elegibilidade ao Projeto Floresta+ é estimada por análise automática apenas para imóveis cuja análise pela SEMA-AC ainda não foi concluída. Para imóveis já analisados, prevalecem as informações oficiais disponibilizadas pela SEMA-AC em seus demais canais institucionais.\nAbrir servidor de mapas em janela separada"
+    },
+    "parecer": "O imóvel rural cadastrado sob o CAR AC-1200450-0B14.DF36.3320.4810.ACDF.1A96.F5FC.2DA7 possui uma área total de 101 hectares, o que equivale a 1,01 módulos fiscais, caracterizando-",
+    "alertas_criticos": "- Situação inapta em protocolo/programa: Elegibilidade ao Floresta+ Amazônia ⁴ ? — Inapto\n- Sobreposição de imóveis ou cadastros: Código(s) CAR de imóvel(eis) rural(ais) em sobreposição ? + — Sim",
+    "pdf": "",
+    "atualizado_em_site": "11/08/2026",
+    "mensagem_erro": "",
+    "criado_em": "2026-08-14T03:52:19.836Z",
+    "atualizado_em": "2026-08-14T04:40:40.779Z"
+  }
+}
+]
