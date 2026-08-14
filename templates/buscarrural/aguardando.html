@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Aguardando consulta — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container auth-card auth-card--wide consulta-aguardando">
+    <h1>Consulta em andamento</h1>
+    <p class="auth-lead">
+      Consultando o CAR <strong>{{ consulta.numero_car }}</strong> no Selo Verde AC.
+    </p>
+    <ol class="consulta-passos">
+      <li>O Chrome abre em segundo plano para acessar o portal da SEMA/AC.</li>
+      <li>A verificação anti-robô (Cap.js) é resolvida automaticamente.</li>
+      <li>Os dados do relatório são lidos na tela e salvos no histórico.</li>
+      <li>Um mini parecer é gerado com IA conforme a legislação ambiental.</li>
+    </ol>
+    <div class="consulta-status-box" id="consulta-status-box">
+      <span class="consulta-spinner" aria-hidden="true"></span>
+      <p id="consulta-status-text">Iniciando consulta automática…</p>
+    </div>
+    <p class="form-help consulta-aviso-chrome">
+      <strong>Importante:</strong> não feche a janela do Chrome enquanto a consulta estiver em andamento.
+    </p>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  const statusUrl = "{% url 'buscarrural:status' consulta.pk %}";
+  const box = document.getElementById("consulta-status-box");
+  const text = document.getElementById("consulta-status-text");
+
+  async function poll() {
+    try {
+      const res = await fetch(statusUrl, { headers: { "X-Requested-With": "XMLHttpRequest" } });
+      const data = await res.json();
+      if (data.mensagem) text.textContent = data.mensagem;
+      if (data.status === "sucesso" || data.status === "erro") {
+        box.classList.add("consulta-status-box--done");
+        setTimeout(function () { window.location.href = data.redirect; }, 1200);
+        return;
+      }
+    } catch (e) {
+      text.textContent = "Verificando status da consulta...";
+    }
+    setTimeout(poll, 2500);
+  }
+  poll();
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Contato — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <h1>Contato</h1>
+    <p>Envie sua mensagem — responderemos o mais breve possível</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <h2>Fale conosco</h2>
+      <p><strong>Telefone:</strong> {{ site_config.telefone }}</p>
+      <p><strong>E-mail:</strong> {{ site_config.email }}</p>
+      <p><strong>Endereço:</strong> {{ site_config.endereco }}, {{ site_config.cidade }} — {{ site_config.estado }}</p>
+    </div>
+    <form method="post" class="contact-form" novalidate>
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Painel — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="auth-card auth-card--wide">
+      <h1>Olá, {{ user.get_full_name|default:user.username }}</h1>
+      {% if perfil %}
+      <ul class="profile-list">
+        <li><strong>Nome:</strong> {{ perfil.nome_completo }}</li>
+        {% if perfil.empresa %}<li><strong>Empresa:</strong> {{ perfil.empresa }}</li>{% endif %}
+        {% if perfil.telefone %}<li><strong>Telefone:</strong> {{ perfil.telefone }}</li>{% endif %}
+      </ul>
+      {% endif %}
+      <p>Bem-vindo à área do cliente Rural Pro Amazônia.</p>
+      <div class="painel-actions">
+        <a href="{% url 'buscarrural:consultar' %}" class="btn btn-primary">BuscarRural — Selo Verde Acre</a>
+        <a href="{% url 'buscarrural:historico' %}" class="btn btn-outline">Histórico de consultas</a>
+        <a href="{% url 'clientes:logout' %}" class="btn btn-outline">Sair</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

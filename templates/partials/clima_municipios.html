@@ -1,0 +1,26 @@
+<section class="section section-clima" id="clima">
+  <div class="container">
+    <header class="section-header section-header--center">
+      <h2>Clima por regiões do Acre e entorno</h2>
+      <p class="clima-data-principal">
+        <time datetime="{{ clima_data.iso }}">{{ clima_data.completa }}</time>
+      </p>
+      <p>Informação para planejar o dia no campo — atualizado diariamente.</p>
+    </header>
+
+    <div class="clima-infografico">
+      <img
+        src="{{ clima_card_url }}"
+        alt="Clima por regiões do Acre e entorno — {{ clima_data.completa }}"
+        class="clima-infografico__img"
+        loading="lazy"
+        width="1080"
+        height="auto"
+      >
+    </div>
+
+    <p class="clima-fonte">
+      Fontes: INMET, CPTEC/INPE, Defesa Civil e Open-Meteo. Card gerado pela RuralPro.
+    </p>
+  </div>
+</section>

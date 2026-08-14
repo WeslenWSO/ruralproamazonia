@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Cadastro — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="section auth-section">
+  <div class="container auth-card auth-card--wide">
+    <h1>Criar conta</h1>
+    <p class="auth-lead">Cadastre-se com Google, Apple, Facebook ou e-mail.</p>
+
+    {% include "partials/social_login.html" %}
+
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {{ form.username }}
+      {% for field in form %}
+        {% if field.name != 'username' %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {{ field.errors }}
+        </div>
+        {% endif %}
+      {% endfor %}
+      <button type="submit" class="btn btn-primary btn-block">Cadastrar com e-mail</button>
+    </form>
+    <p class="auth-alt">Já possui conta? <a href="{% url 'clientes:login' %}">Faça login</a></p>
+  </div>
+</section>
+{% endblock %}

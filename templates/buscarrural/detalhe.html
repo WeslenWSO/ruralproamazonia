@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Consulta {{ consulta.numero_car }} — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <h1>{{ consulta.numero_car }}</h1>
+    <p>Selo Verde Acre — {{ consulta.get_status_display }}{% if consulta.atualizado_em_site %} · Atualizado em {{ consulta.atualizado_em_site }}{% endif %}</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="consulta-acoes">
+      <a href="{% url 'buscarrural:consultar' %}" class="btn btn-outline">Nova consulta</a>
+      <a href="{% url 'buscarrural:historico' %}" class="btn btn-outline">Histórico</a>
+      {% if pode_gerar_parecer %}
+      <form method="post" action="{% url 'buscarrural:gerar_parecer' consulta.pk %}" class="consulta-acoes__form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Gerar parecer no Gemini</button>
+      </form>
+      {% endif %}
+      {% if consulta.pdf %}
+      <a href="{{ consulta.pdf.url }}" class="btn btn-primary" target="_blank" rel="noopener">Download PDF</a>
+      {% endif %}
+    </div>
+
+    {% if consulta.status == 'erro' %}
+    <div class="alert alert-error">{{ consulta.mensagem_erro }}</div>
+    {% endif %}
+
+    {% if consulta.parecer %}
+    <div class="consulta-parecer auth-card auth-card--wide">
+      <h2>Mini parecer da situação rural</h2>
+      <p class="form-help">
+        Análise automatizada com base nos dados do Selo Verde AC e na legislação ambiental aplicável.
+        Não substitui vistoria ou parecer técnico assinado.
+      </p>
+      <div class="consulta-parecer__texto">{{ consulta.parecer|linebreaks }}</div>
+      <p class="consulta-parecer__aviso"><strong>Para mais detalhes, procure o engenheiro ambiental.</strong></p>
+    </div>
+    {% endif %}
+
+    {% if secoes %}
+      {% for secao in secoes %}
+      <div class="consulta-secao">
+        {% if secao.titulo %}<h2>{{ secao.titulo }}</h2>{% endif %}
+        <table class="data-table">
+          <tbody>
+            {% for linha in secao.linhas %}
+            <tr>
+              <th scope="row">{{ linha.rotulo }}</th>
+              <td>{{ linha.valor|default:"—" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endfor %}
+    {% elif campos %}
+    <table class="data-table">
+      <tbody>
+        {% for rotulo, valor in campos.items %}
+        <tr>
+          <th scope="row">{{ rotulo }}</th>
+          <td>{{ valor|default:"—" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>Sem dados extraídos para esta consulta.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

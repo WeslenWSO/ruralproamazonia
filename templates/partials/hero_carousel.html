@@ -1,0 +1,40 @@
+<section class="hero-carousel" data-hero-carousel>
+  <div class="hero-slides">
+    {% for slide in slides %}
+    <article class="hero-slide{% if forloop.first %} is-active{% endif %}" style="background-image:url('{{ slide.imagem_url }}')">
+      <div class="container hero-content">
+        <p class="hero-eyebrow">{{ site_config.slogan|default:"Rural Pro Amazônia" }}</p>
+        <h1>{{ slide.titulo }}</h1>
+        {% if slide.subtitulo %}<p class="hero-lead">{{ slide.subtitulo }}</p>{% endif %}
+        <p class="hero-tagline">Soluções sustentáveis para o agronegócio na Amazônia</p>
+        <div class="hero-actions">
+          {% if slide.link %}
+          <a href="{{ slide.link }}" class="btn btn-cta">{{ slide.texto_botao|default:"Saiba mais" }}</a>
+          {% endif %}
+          <a href="{% url 'core:home' %}#sobre" class="btn btn-outline-light">Sobre nós</a>
+        </div>
+      </div>
+    </article>
+    {% empty %}
+    <article class="hero-slide is-active hero-slide--fallback" style="background-image:url('/static/img/hero-1.jpg')">
+      <div class="container hero-content">
+        <p class="hero-eyebrow">Rural Pro Amazônia</p>
+        <h1>Agronegócio sustentável</h1>
+        <p class="hero-lead">Especializada em soluções rurais no Acre e Rondônia</p>
+        <p class="hero-tagline">Um futuro melhor para quem produz na Amazônia</p>
+        <div class="hero-actions">
+          <a href="{% url 'contato:contato' %}" class="btn btn-cta">Solicitar orçamento</a>
+          <a href="{% url 'core:home' %}#sobre" class="btn btn-outline-light">Sobre nós</a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% if slides|length > 1 %}
+  <div class="hero-dots" data-hero-dots>
+    {% for slide in slides %}
+    <button type="button" class="hero-dot{% if forloop.first %} is-active{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>

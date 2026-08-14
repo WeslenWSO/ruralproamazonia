@@ -1,0 +1,26 @@
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-left">
+      <div class="topbar-contact">
+        {% if site_config.telefone %}
+        <a href="tel:{{ site_config.telefone }}">{{ site_config.telefone }}</a>
+        {% endif %}
+        {% if site_config.whatsapp %}
+        <a href="https://wa.me/{{ site_config.whatsapp_numero }}" target="_blank" rel="noopener">{{ site_config.whatsapp }}</a>
+        {% endif %}
+        {% if site_config.email %}
+        <a href="mailto:{{ site_config.email }}">{{ site_config.email }}</a>
+        {% endif %}
+      </div>
+      <div class="topbar-social">
+        {% if site_config.instagram %}<a href="{{ site_config.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">IG</a>{% endif %}
+        {% if site_config.facebook %}<a href="{{ site_config.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">FB</a>{% endif %}
+        {% if site_config.linkedin %}<a href="{{ site_config.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn">IN</a>{% endif %}
+        {% if site_config.youtube %}<a href="{{ site_config.youtube }}" target="_blank" rel="noopener" aria-label="YouTube">YT</a>{% endif %}
+      </div>
+    </div>
+    <div class="topbar-links">
+      <a href="{% url 'clientes:login' %}">Área do cliente</a>
+    </div>
+  </div>
+</div>

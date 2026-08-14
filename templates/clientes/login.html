@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Login — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="section auth-section">
+  <div class="container auth-card">
+    <h1>Área do cliente</h1>
+    <p class="auth-lead">Entre com Google, Apple, Facebook ou e-mail.</p>
+
+    {% include "partials/social_login.html" %}
+
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary btn-block">Entrar com e-mail</button>
+    </form>
+    <p class="auth-alt">Ainda não tem conta? <a href="{% url 'clientes:cadastro' %}">Cadastre-se</a></p>
+  </div>
+</section>
+{% endblock %}

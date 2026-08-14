@@ -1,0 +1,10 @@
+﻿Django>=5.2,<6.0
+Pillow>=10.0
+django-ckeditor>=6.7
+django-allauth>=65.0
+requests>=2.31
+google-genai>=1.0
+python-dotenv>=1.0
+playwright>=1.40
+selenium>=4.15
+undetected-chromedriver>=3.5

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Blog — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <h1>Blog</h1>
+    <p>Notícias e conteúdos sobre agronegôcio na Amazônia</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container cards-grid">
+    {% for post in posts %}
+    <article class="card card-blog">
+      <div class="card-image" style="background-image:url('{{ post.imagem_url }}')"></div>
+      <div class="card-body">
+        <time datetime="{{ post.publicado_em|date:'c' }}">{{ post.publicado_em|date:'d/m/Y' }}</time>
+        <h2>
+          {% if post.link_externo %}
+          <a href="{{ post.link_externo }}" target="_blank" rel="noopener">{{ post.titulo }}</a>
+          {% else %}
+          <a href="{% url 'blog:detalhe' post.slug %}">{{ post.titulo }}</a>
+          {% endif %}
+        </h2>
+        <p>{{ post.resumo|truncatewords:25 }}</p>
+      </div>
+    </article>
+    {% empty %}
+    <p>Nenhuma publicação encontrada.</p>
+    {% endfor %}
+  </div>
+  {% if posts.has_other_pages %}
+  <nav class="pagination container">
+    {% if posts.has_previous %}<a href="?page={{ posts.previous_page_number }}">Anterior</a>{% endif %}
+    <span>Página {{ posts.number }} de {{ posts.paginator.num_pages }}</span>
+    {% if posts.has_next %}<a href="?page={{ posts.next_page_number }}">Próxima</a>{% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

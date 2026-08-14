@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ servico.titulo }} — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <h1>{{ servico.titulo }}</h1>
+    <p>{{ servico.resumo }}</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container detail-layout">
+    <div class="detail-image" style="background-image:url('{{ servico.imagem_url }}')"></div>
+    <div>
+      <div class="richtext">{{ servico.descricao|safe }}</div>
+      {% if servico.slug == 'buscarrural' %}
+      <p class="service-link">
+        <a class="btn btn-primary" href="{% url 'buscarrural:consultar' %}">Consultar Selo Verde Acre (CAR)</a>
+        <a class="btn btn-outline" href="{% url 'buscarrural:historico' %}">Ver histórico</a>
+      </p>
+      {% elif servico.link_url %}
+      <p class="service-link">
+        <a class="btn btn-primary" href="{{ servico.link_url }}" target="_blank" rel="noopener noreferrer">
+          Acessar {{ servico.link_rotulo }}
+        </a>
+      </p>
+      {% endif %}
+    </div>
+  </div>
+  {% if relacionados %}
+  <div class="container section-top">
+    <h2>Outros serviços</h2>
+    <div class="cards-grid cards-grid--3">
+      {% for s in relacionados %}
+      <article class="card card-service">
+        <div class="card-body">
+          <h3><a href="{% url 'servicos:detalhe' s.slug %}">{{ s.titulo }}</a></h3>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

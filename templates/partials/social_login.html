@@ -1,0 +1,39 @@
+{% load socialaccount %}
+<div class="social-login">
+  {% if social_providers.google %}
+  <a href="{% provider_login_url 'google' process='login' %}" class="btn btn-social btn-google">
+    <span class="btn-social-icon" aria-hidden="true">G</span>
+    Continuar com Google
+  </a>
+  {% else %}
+  <span class="btn btn-social btn-google btn-social--disabled" title="Configure GOOGLE_CLIENT_ID no .env">
+    <span class="btn-social-icon" aria-hidden="true">G</span>
+    Continuar com Google
+  </span>
+  {% endif %}
+
+  {% if social_providers.apple %}
+  <a href="{% provider_login_url 'apple' process='login' %}" class="btn btn-social btn-apple">
+    <span class="btn-social-icon" aria-hidden="true">&#63743;</span>
+    Continuar com Apple
+  </a>
+  {% else %}
+  <span class="btn btn-social btn-apple btn-social--disabled" title="Configure APPLE_CLIENT_ID no .env">
+    <span class="btn-social-icon" aria-hidden="true">&#63743;</span>
+    Continuar com Apple
+  </span>
+  {% endif %}
+
+  {% if social_providers.facebook %}
+  <a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-social btn-facebook">
+    <span class="btn-social-icon" aria-hidden="true">f</span>
+    Continuar com Facebook
+  </a>
+  {% else %}
+  <span class="btn btn-social btn-facebook btn-social--disabled" title="Configure FACEBOOK_APP_ID no .env">
+    <span class="btn-social-icon" aria-hidden="true">f</span>
+    Continuar com Facebook
+  </span>
+  {% endif %}
+</div>
+<p class="auth-divider"><span>ou use seu e-mail</span></p>

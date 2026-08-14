@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}BuscarRural — Selo Verde Acre — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <h1>BuscarRural — Selo Verde Acre</h1>
+    <p>Consulta socioambiental automática pelo código CAR no portal da SEMA/AC.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container consulta-layout">
+    <div class="auth-card auth-card--wide">
+      <h2>Pesquisa Selo Verde Acre</h2>
+      <p class="auth-lead">
+        Informe o código CAR. O sistema lê os dados no
+        <a href="https://seloverde.sema.ac.gov.br/consultar-car/" target="_blank" rel="noopener">Selo Verde AC</a>,
+        gera um mini parecer conforme a legislação ambiental e salva no histórico.
+      </p>
+      <form method="post" class="auth-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="{{ form.numero_car.id_for_label }}">{{ form.numero_car.label }}</label>
+          {{ form.numero_car }}
+          {% if form.numero_car.help_text %}<small class="form-help">{{ form.numero_car.help_text }}</small>{% endif %}
+          {{ form.numero_car.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Consultar e salvar</button>
+      </form>
+      <p class="auth-alt"><a href="{% url 'buscarrural:historico' %}">Ver histórico completo</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}

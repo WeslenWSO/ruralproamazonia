@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Histórico BuscarRural — {{ block.super }}{% endblock %}
+{% block content %}
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <h1>Histórico de consultas</h1>
+    <p>Selo Verde Acre — consultas CAR salvas no BuscarRural.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <p><a href="{% url 'buscarrural:consultar' %}" class="btn btn-primary">Nova consulta CAR</a></p>
+    {% if consultas %}
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>CAR</th>
+            <th>Status</th>
+            <th>Atualizado (site)</th>
+            <th>Data</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in consultas %}
+          <tr>
+            <td>{{ c.numero_car }}</td>
+            <td><span class="tag tag--{{ c.status }}">{{ c.get_status_display }}</span></td>
+            <td>{{ c.atualizado_em_site|default:"—" }}</td>
+            <td>{{ c.criado_em|date:"d/m/Y H:i" }}</td>
+            <td><a href="{% url 'buscarrural:detalhe' c.pk %}">Ver detalhes</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p>Nenhuma consulta registrada ainda.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
