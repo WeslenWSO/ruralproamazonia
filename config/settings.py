@@ -104,6 +104,44 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+
+def _obter_database_url():
+    for key in (
+        'DATABASE_URL',
+        'POSTGRES_URL',
+        'INTERNAL_DATABASE_URL',
+        'RENDER_DATABASE_URL',
+    ):
+        valor = os.environ.get(key, '').strip()
+        if valor:
+            return valor
+
+    usuario = (
+        os.environ.get('POSTGRES_USER', '').strip()
+        or os.environ.get('PGUSER', '').strip()
+    )
+    senha = (
+        os.environ.get('POSTGRES_PASSWORD', '').strip()
+        or os.environ.get('PGPASSWORD', '').strip()
+    )
+    host = (
+        os.environ.get('POSTGRES_HOST', '').strip()
+        or os.environ.get('PGHOST', '').strip()
+    )
+    porta = (
+        os.environ.get('POSTGRES_PORT', '').strip()
+        or os.environ.get('PGPORT', '').strip()
+        or '5432'
+    )
+    banco = (
+        os.environ.get('POSTGRES_DB', '').strip()
+        or os.environ.get('PGDATABASE', '').strip()
+    )
+    if usuario and senha and host and banco:
+        return f'postgresql://{usuario}:{senha}@{host}:{porta}/{banco}'
+    return ''
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -111,7 +149,7 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get('DATABASE_URL', '').strip()
+database_url = _obter_database_url()
 if database_url:
     DATABASES['default'] = dj_database_url.config(
         default=database_url,
@@ -119,12 +157,7 @@ if database_url:
         ssl_require='sslmode=require' in database_url or database_url.startswith('postgres'),
     )
 elif ON_RENDER:
-    from django.core.exceptions import ImproperlyConfigured
-
-    raise ImproperlyConfigured(
-        'DATABASE_URL nao configurada no Render. Crie um PostgreSQL no painel, '
-        'vincule ao Web Service e rode migrate no deploy.'
-    )
+    DATABASES['default']['NAME'] = BASE_DIR / 'db.sqlite3'
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
