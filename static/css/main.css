@@ -772,6 +772,22 @@ a:hover { color: var(--blue); }
   margin-bottom: 2rem;
   border-left: 4px solid var(--green);
 }
+.consulta-alertas {
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #c62828;
+  background: #fff5f5;
+}
+.consulta-alertas h2 {
+  font-size: 1.25rem;
+  color: #a02020;
+  margin-bottom: 0.35rem;
+}
+.consulta-alertas__lista {
+  margin-top: 0.75rem;
+  line-height: 1.7;
+  color: #5c1a1a;
+  white-space: pre-wrap;
+}
 .consulta-acoes {
   display: flex;
   flex-wrap: wrap;

@@ -19,12 +19,14 @@ def salvar_parecer_consulta(consulta):
     if not consulta.dados:
         raise ParecerGeminiError("Esta consulta não possui dados do Selo Verde.")
 
-    consulta.parecer = gerar_parecer_selo_verde(
+    resultado = gerar_parecer_selo_verde(
         consulta.numero_car,
         consulta.dados,
         consulta.atualizado_em_site,
     )
-    consulta.save(update_fields=["parecer", "atualizado_em"])
+    consulta.parecer = resultado["parecer"]
+    consulta.alertas_criticos = resultado["alertas_criticos"]
+    consulta.save(update_fields=["parecer", "alertas_criticos", "atualizado_em"])
     return consulta.parecer
 
 
@@ -51,6 +53,7 @@ def executar_consulta_em_background(consulta_id):
                 salvar_parecer_consulta(consulta)
             except ParecerGeminiError as exc:
                 consulta.parecer = ""
+                consulta.alertas_criticos = ""
                 logger.warning("Parecer Gemini não gerado (consulta %s): %s", consulta_id, exc)
 
         consulta.status = ConsultaHistorico.STATUS_SUCESSO

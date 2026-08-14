@@ -9,5 +9,5 @@ class ConsultaHistoricoAdmin(admin.ModelAdmin):
     list_display = ("numero_car", "usuario", "tipo", "status", "criado_em")
     list_filter = ("status", "tipo", "criado_em")
     search_fields = ("numero_car", "usuario__username", "usuario__email")
-    readonly_fields = ("criado_em", "atualizado_em", "dados", "parecer")
+    readonly_fields = ("criado_em", "atualizado_em", "dados", "parecer", "alertas_criticos")
     date_hierarchy = "criado_em"

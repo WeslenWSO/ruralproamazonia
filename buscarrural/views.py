@@ -79,10 +79,10 @@ def detalhe_view(request, pk):
             "campos": campos,
             "secoes": secoes,
             "pode_gerar_parecer": (
-                not consulta.parecer
-                and consulta.status == ConsultaHistorico.STATUS_SUCESSO
+                consulta.status == ConsultaHistorico.STATUS_SUCESSO
                 and bool(consulta.dados)
             ),
+            "tem_parecer": bool(consulta.parecer),
         },
     )
 
@@ -92,15 +92,14 @@ def detalhe_view(request, pk):
 def gerar_parecer_view(request, pk):
     consulta = get_object_or_404(ConsultaHistorico, pk=pk, usuario=request.user)
     if consulta.parecer:
-        messages.info(request, "Esta consulta já possui mini parecer.")
-        return redirect("buscarrural:detalhe", pk=consulta.pk)
+        messages.info(request, "Parecer anterior será substituído por uma nova análise.")
     if consulta.status != ConsultaHistorico.STATUS_SUCESSO:
         messages.error(request, "Só é possível gerar parecer para consultas concluídas.")
         return redirect("buscarrural:detalhe", pk=consulta.pk)
 
     try:
         salvar_parecer_consulta(consulta)
-        messages.success(request, "Mini parecer gerado com sucesso.")
+        messages.success(request, "Mini parecer e alertas críticos gerados com sucesso.")
     except ParecerGeminiError as exc:
         messages.error(request, str(exc))
 
