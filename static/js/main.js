@@ -9,6 +9,24 @@
     });
   }
 
+  var root = document.documentElement;
+  var THEME_INTERVAL_MS = 5 * 60 * 1000;
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    root.classList.add("theme-transition");
+    window.setTimeout(function () {
+      root.classList.remove("theme-transition");
+    }, 500);
+  }
+
+  function toggleTheme() {
+    applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  }
+
+  applyTheme("light");
+  window.setInterval(toggleTheme, THEME_INTERVAL_MS);
+
   var carousel = document.querySelector("[data-hero-carousel]");
   if (!carousel) return;
 

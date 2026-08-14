@@ -814,3 +814,166 @@ a:hover { color: var(--blue); }
   color: var(--green-dark);
   font-size: 0.95rem;
 }
+
+/* --- Tema escuro (alternância automática a cada 5 min) --- */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --green: #4caf7a;
+  --green-dark: #8fd4a8;
+  --green-light: #3d8b5c;
+  --charcoal: #e4e7eb;
+  --cream: #0f1218;
+  --blue: #6ba3ff;
+  --blue-dark: #5a92ef;
+  --yellow: #e0c068;
+  --white: #1a1f28;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --text-muted: #b4bac3;
+  --text-soft: #939aa3;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --surface-muted: #222831;
+  --input-bg: #151920;
+  --input-border: #3a424f;
+}
+
+html.theme-transition,
+html.theme-transition body,
+html.theme-transition .site-header,
+html.theme-transition .section-alt,
+html.theme-transition .card,
+html.theme-transition .auth-card,
+html.theme-transition .data-table {
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+}
+
+html[data-theme="dark"] body {
+  background: var(--cream);
+  color: var(--charcoal);
+}
+
+html[data-theme="dark"] .site-header {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .main-nav a:not(.btn) { color: var(--charcoal); }
+html[data-theme="dark"] .nav-toggle span { background: var(--green-dark); }
+
+html[data-theme="dark"] .section-alt,
+html[data-theme="dark"] .section-intro,
+html[data-theme="dark"] .historico-recente {
+  background: var(--white);
+}
+
+html[data-theme="dark"] .section-diferenciais,
+html[data-theme="dark"] .section-clima {
+  background: linear-gradient(180deg, var(--cream) 0%, #151a22 100%);
+}
+
+html[data-theme="dark"] .section-header--center p,
+html[data-theme="dark"] .intro-lead,
+html[data-theme="dark"] .intro-text p,
+html[data-theme="dark"] .pillar-card p,
+html[data-theme="dark"] .card-service--corp .card-body p,
+html[data-theme="dark"] .about-text .richtext,
+html[data-theme="dark"] .auth-lead,
+html[data-theme="dark"] .form-help,
+html[data-theme="dark"] .consulta-passos,
+html[data-theme="dark"] .clima-condicao,
+html[data-theme="dark"] .clima-detalhes,
+html[data-theme="dark"] .clima-erro,
+html[data-theme="dark"] .clima-fonte,
+html[data-theme="dark"] .clima-card-fonte {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .stat-card {
+  background: var(--surface-muted);
+}
+
+html[data-theme="dark"] .clima-data-regiao,
+html[data-theme="dark"] .clima-card,
+html[data-theme="dark"] .pillar-card,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .auth-card,
+html[data-theme="dark"] .clima-infografico {
+  background: var(--white);
+  border-color: var(--border-subtle);
+}
+
+html[data-theme="dark"] .clima-infografico { box-shadow: var(--shadow); }
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .newsletter-input {
+  background: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--charcoal);
+}
+
+html[data-theme="dark"] .data-table th {
+  background: var(--surface-muted);
+  color: var(--green-dark);
+}
+
+html[data-theme="dark"] .data-table th,
+html[data-theme="dark"] .data-table td,
+html[data-theme="dark"] .historico-lista li {
+  border-bottom-color: var(--border-subtle);
+}
+
+html[data-theme="dark"] .auth-divider { color: var(--text-soft); }
+html[data-theme="dark"] .auth-divider::before,
+html[data-theme="dark"] .auth-divider::after {
+  background: var(--border-subtle);
+}
+
+html[data-theme="dark"] .btn-social {
+  background: var(--surface-muted);
+  border-color: var(--input-border);
+  color: var(--charcoal);
+}
+
+html[data-theme="dark"] .btn-social:hover { background: #2a303a; }
+html[data-theme="dark"] .btn-apple .btn-social-icon { color: var(--charcoal); }
+
+html[data-theme="dark"] .auth-social-info {
+  background: #2a2418;
+  border-color: #5c4a20;
+  color: #e8d48a;
+}
+
+html[data-theme="dark"] .consulta-status-box {
+  background: #1a2420;
+  border-color: rgba(76, 175, 122, 0.25);
+}
+
+html[data-theme="dark"] .consulta-parecer__texto { color: var(--charcoal); }
+html[data-theme="dark"] .consulta-alertas {
+  background: #2a1515;
+  border-left-color: #ef5350;
+}
+
+html[data-theme="dark"] .consulta-alertas h2 { color: #ff8a80; }
+html[data-theme="dark"] .consulta-alertas__lista { color: #ffcdd2; }
+
+html[data-theme="dark"] .alert-success {
+  background: #1a2e22;
+  color: #a5d6a7;
+}
+
+html[data-theme="dark"] .alert-error,
+html[data-theme="dark"] .alert-danger {
+  background: #2e1a1a;
+  color: #ef9a9a;
+}
+
+html[data-theme="dark"] .alert-info {
+  background: #1a2438;
+  color: #90caf9;
+}
+
+@media (max-width: 768px) {
+  html[data-theme="dark"] .main-nav {
+    background: var(--white);
+    box-shadow: var(--shadow);
+  }
+}
