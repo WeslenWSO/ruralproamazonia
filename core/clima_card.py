@@ -159,13 +159,32 @@ def _calcular_altura(regioes):
     )
 
 
+def _regioes_com_dados(regioes):
+    return any(
+        not item.get("erro")
+        for regiao in regioes
+        for item in regiao.get("itens", [])
+    )
+
+
 def obter_ou_gerar_card_regional(destino_dir=None):
     data = obter_data_clima()
     pasta = Path(destino_dir) if destino_dir else _pasta_clima()
     caminho = pasta / f"card_regional_{data['iso']}.jpg"
-    if not caminho.exists():
-        gerar_card_regional(pasta)
-    return caminho
+
+    clima = obter_clima_municipios()
+    regioes = montar_dados_regioes(clima["por_id"])
+    if caminho.exists() and _regioes_com_dados(regioes):
+        return caminho
+
+    if not _regioes_com_dados(regioes):
+        clima = obter_clima_municipios(forcar=True)
+        regioes = montar_dados_regioes(clima["por_id"])
+
+    if caminho.exists():
+        caminho.unlink(missing_ok=True)
+
+    return gerar_card_regional(pasta, clima=clima, regioes=regioes)
 
 
 def _desenhar_cabecalho(base, draw, data):
@@ -428,15 +447,17 @@ def _desenhar_rodape(base, draw, y):
     )
 
 
-def gerar_card_regional(destino_dir=None):
-    clima = obter_clima_municipios()
+def gerar_card_regional(destino_dir=None, clima=None, regioes=None):
+    if clima is None:
+        clima = obter_clima_municipios()
     data = obter_data_clima()
     from django.utils import timezone
 
     agora = timezone.localtime(timezone.now())
     data["hora_consulta"] = agora.strftime("%Hh").lstrip("0") or "6h"
 
-    regioes = montar_dados_regioes(clima["por_id"])
+    if regioes is None:
+        regioes = montar_dados_regioes(clima["por_id"])
     altura = _calcular_altura(regioes)
     img = Image.new("RGB", (LARGURA, altura), _hex(CORES["fundo"]))
     draw = ImageDraw.Draw(img)

@@ -18,8 +18,12 @@ def home(request):
         posts = Post.objects.filter(publicado=True)[:3]
     historia = HistoriaEmpresa.load()
     clima_data = obter_data_clima()
-    obter_ou_gerar_card_regional()
-    card_url = f"{settings.MEDIA_URL}clima/card_regional_{clima_data['iso']}.jpg"
+    card_path = obter_ou_gerar_card_regional()
+    card_version = int(card_path.stat().st_mtime) if card_path.exists() else 0
+    card_url = (
+        f"{settings.MEDIA_URL}clima/card_regional_{clima_data['iso']}.jpg"
+        f"?v={card_version}"
+    )
     return render(
         request,
         "core/home.html",

@@ -1,8 +1,7 @@
 import json
-import urllib.error
-import urllib.parse
-import urllib.request
+import time
 
+import requests
 from django.core.cache import cache
 from django.utils import timezone
 
@@ -78,6 +77,11 @@ ICONE_CLIMA = {
 }
 
 CACHE_TTL = 60 * 30
+CACHE_ERRO_TTL = 60
+OPEN_METEO_HEADERS = {
+    "User-Agent": "RuralProAmazonia/1.0 (previsao-clima; +https://ruralproamazonia.com.br)",
+    "Accept": "application/json",
+}
 
 
 def _descricao_clima(codigo):
@@ -105,36 +109,48 @@ def _icone_clima(codigo):
 
 
 def _buscar_previsao(lat, lon, dias=1):
-    params = urllib.parse.urlencode(
-        {
-            "latitude": lat,
-            "longitude": lon,
-            "current": "temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m",
-            "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code",
-            "timezone": "America/Rio_Branco",
-            "forecast_days": dias,
-        }
-    )
-    url = f"https://api.open-meteo.com/v1/forecast?{params}"
-    with urllib.request.urlopen(url, timeout=8) as response:
-        return json.loads(response.read().decode())
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "current": "temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m",
+        "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code",
+        "timezone": "America/Rio_Branco",
+        "forecast_days": dias,
+    }
+    ultimo_erro = None
+    for tentativa in range(3):
+        try:
+            response = requests.get(
+                "https://api.open-meteo.com/v1/forecast",
+                params=params,
+                headers=OPEN_METEO_HEADERS,
+                timeout=15,
+            )
+            response.raise_for_status()
+            return response.json()
+        except (requests.RequestException, json.JSONDecodeError, ValueError) as exc:
+            ultimo_erro = exc
+            if tentativa < 2:
+                time.sleep(0.75 * (tentativa + 1))
+    raise ultimo_erro
 
 
-def obter_clima_municipio(municipio):
+def obter_clima_municipio(municipio, forcar=False):
     cache_key = f"clima:{municipio['id']}"
-    cached = cache.get(cache_key)
-    if cached is not None:
-        return cached
+    if not forcar:
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
 
     try:
         dados = _buscar_previsao(municipio["lat"], municipio["lon"], dias=3)
-    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, KeyError):
+    except (requests.RequestException, json.JSONDecodeError, KeyError, TypeError):
         resultado = {
             "nome": municipio["nome"],
             "uf": municipio["uf"],
             "erro": True,
         }
-        cache.set(cache_key, resultado, 60 * 5)
+        cache.set(cache_key, resultado, CACHE_ERRO_TTL)
         return resultado
 
     atual = dados["current"]
@@ -173,12 +189,12 @@ def obter_clima_municipio(municipio):
     return resultado
 
 
-def obter_clima_municipios():
+def obter_clima_municipios(forcar=False):
     acre = []
     rondonia = []
     por_id = {}
     for municipio in MUNICIPIOS_CLIMA:
-        item = obter_clima_municipio(municipio)
+        item = obter_clima_municipio(municipio, forcar=forcar)
         por_id[municipio["id"]] = item
         if municipio["uf"] == "AC":
             acre.append(item)
