@@ -1,5 +1,6 @@
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 from django.core.cache import cache
@@ -193,13 +194,23 @@ def obter_clima_municipios(forcar=False):
     acre = []
     rondonia = []
     por_id = {}
-    for municipio in MUNICIPIOS_CLIMA:
-        item = obter_clima_municipio(municipio, forcar=forcar)
-        por_id[municipio["id"]] = item
-        if municipio["uf"] == "AC":
-            acre.append(item)
-        else:
-            rondonia.append(item)
+
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futuros = {
+            executor.submit(obter_clima_municipio, municipio, forcar): municipio
+            for municipio in MUNICIPIOS_CLIMA
+        }
+        for futuro in as_completed(futuros):
+            municipio = futuros[futuro]
+            item = futuro.result()
+            por_id[municipio["id"]] = item
+            if municipio["uf"] == "AC":
+                acre.append(item)
+            else:
+                rondonia.append(item)
+
+    acre.sort(key=lambda i: i.get("nome", ""))
+    rondonia.sort(key=lambda i: i.get("nome", ""))
     return {"acre": acre, "rondonia": rondonia, "por_id": por_id}
 
 
