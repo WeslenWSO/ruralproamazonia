@@ -1,0 +1,48 @@
+# Blueprint Render — Rural Pro Amazônia
+# Docs: https://render.com/docs/blueprint-spec
+
+databases:
+  - name: ruralpro-db
+    databaseName: ruralpro
+    user: ruralpro
+    plan: free
+
+services:
+  - type: web
+    name: ruralproamazonia
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT"
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ruralpro-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: WEB_CONCURRENCY
+        value: "2"
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings
+      - key: ALLOWED_HOSTS
+        value: localhost,127.0.0.1
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash
+      - key: SELENIUM_HEADLESS
+        value: "True"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SITE_BASE_URL
+        sync: false
+      - key: SITE_DOMAIN
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false

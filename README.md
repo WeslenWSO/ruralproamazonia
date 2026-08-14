@@ -13,8 +13,10 @@ Site institucional em Django para a **Rural Pro Amazônia**, com foco em agroneg
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env
+copy .env.example .env
 ```
+
+No Linux/macOS, use `source .venv/bin/activate` e `cp .env.example .env`.
 
 ## Banco de dados e conteúdo demo
 
@@ -68,6 +70,68 @@ python manage.py runserver
 ```
 
 Acesse `http://127.0.0.1:8000/`. Painel admin: `/admin/` (após `seed_demo`: usuário `admin`, senha `admin123` — altere em produção).
+
+## Deploy no Render
+
+O projeto inclui `render.yaml` (Blueprint) com **PostgreSQL** + **Web Service** Django.
+
+### 1. Subir o código no GitHub
+
+Certifique-se de que o repositório está no GitHub (sem `.env` — já está no `.gitignore`).
+
+### 2. Criar no Render
+
+1. Acesse [render.com](https://render.com) → **New** → **Blueprint**
+2. Conecte o repositório `ruralproamazonia`
+3. O Render lê o `render.yaml` e cria:
+   - Banco PostgreSQL (`ruralpro-db`)
+   - Serviço web (`ruralproamazonia`)
+
+### 3. Variáveis de ambiente (painel Render → Environment)
+
+Preencha manualmente após o deploy:
+
+| Variável | Exemplo |
+|----------|---------|
+| `SITE_BASE_URL` | `https://ruralproamazonia.onrender.com` |
+| `SITE_DOMAIN` | `ruralproamazonia.onrender.com` |
+| `GEMINI_API_KEY` | chave do Google AI Studio |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | OAuth (callbacks com URL do Render) |
+| `ALLOWED_HOSTS` | `ruralproamazonia.onrender.com` |
+| `CSRF_TRUSTED_ORIGINS` | `https://ruralproamazonia.onrender.com` |
+
+`SECRET_KEY`, `DATABASE_URL` e `RENDER` são definidos automaticamente pelo Blueprint.
+
+### 4. Primeiro deploy — conteúdo inicial
+
+No **Shell** do serviço no Render (ou localmente apontando ao Postgres):
+
+```bash
+python manage.py seed_demo
+python manage.py setup_social_auth
+python manage.py createsuperuser
+```
+
+### 5. OAuth no Google (produção)
+
+Adicione no Google Cloud Console:
+
+- **Origens:** `https://SEU-APP.onrender.com`
+- **Redirect URI:** `https://SEU-APP.onrender.com/accounts/google/login/callback/`
+
+### Limitações no Render (plano free)
+
+- **BuscarRural / Selo Verde (Selenium):** não roda no Render padrão (exige Chrome local). O site, blog, login e parecer Gemini funcionam; a consulta Selo Verde use em ambiente local ou em servidor com Chrome.
+- **Arquivos em `media/`:** disco efêmero — uploads podem sumir ao redeploy. Para produção, use storage externo (S3, etc.).
+
+### Build local (simular produção)
+
+```bash
+pip install -r requirements.txt
+python manage.py collectstatic --no-input
+python manage.py migrate
+gunicorn config.wsgi:application --bind 127.0.0.1:8000
+```
 
 ## Gerar arquivos do projeto
 
