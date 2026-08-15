@@ -5,28 +5,55 @@ from django.conf import settings
 from django.db import close_old_connections
 
 from buscarrural.models import ConsultaHistorico
-from buscarrural.services.parecer_gemini import ParecerGeminiError, gerar_parecer_selo_verde
-from buscarrural.services.selo_verde_acre import SeloVerdeAcreError, consultar_selo_verde_acre
+from buscarrural.services.parecer_ia import ParecerIAError, chave_ia_configurada, gerar_diagnostico_consulta
+from buscarrural.services.parecer_pdf import gerar_pdf_diagnostico
+from buscarrural.services.selo_verde_acre import SeloVerdeAcreError, _salvar_imagem_terreno_consulta, consultar_selo_verde_acre
+from buscarrural.services.storage_consulta import anexar_pdf_consulta, salvar_resultado_consulta
 
 logger = logging.getLogger(__name__)
 
 
+def _aplicar_diagnostico(consulta, resultado):
+    consulta.parecer = resultado["parecer"]
+    consulta.parecer_diagnostico = resultado.get("parecer_diagnostico") or {}
+    consulta.alertas_criticos = resultado.get("alertas_criticos", "")
+    consulta.save(
+        update_fields=[
+            "parecer",
+            "parecer_diagnostico",
+            "alertas_criticos",
+            "atualizado_em",
+        ]
+    )
+
+
+def _gerar_pdf_e_storage(consulta):
+    if not consulta.parecer_diagnostico:
+        return consulta
+    try:
+        caminho = gerar_pdf_diagnostico(consulta)
+        anexar_pdf_consulta(consulta, caminho)
+        salvar_resultado_consulta(consulta)
+    except Exception as exc:
+        logger.warning("PDF diagnóstico não gerado (consulta %s): %s", consulta.pk, exc)
+    return consulta
+
+
 def salvar_parecer_consulta(consulta):
-    if not settings.GEMINI_API_KEY:
-        raise ParecerGeminiError(
-            "GEMINI_API_KEY não configurada. Adicione a chave no arquivo .env."
+    if not chave_ia_configurada():
+        raise ParecerIAError(
+            "OPENAI_API_KEY ou GEMINI_API_KEY não configurada. Adicione a chave no arquivo .env."
         )
     if not consulta.dados:
-        raise ParecerGeminiError("Esta consulta não possui dados do Selo Verde.")
+        raise ParecerIAError("Esta consulta não possui dados do Selo Verde.")
 
-    resultado = gerar_parecer_selo_verde(
+    resultado = gerar_diagnostico_consulta(
         consulta.numero_car,
         consulta.dados,
         consulta.atualizado_em_site,
     )
-    consulta.parecer = resultado["parecer"]
-    consulta.alertas_criticos = resultado["alertas_criticos"]
-    consulta.save(update_fields=["parecer", "alertas_criticos", "atualizado_em"])
+    _aplicar_diagnostico(consulta, resultado)
+    _gerar_pdf_e_storage(consulta)
     return consulta.parecer
 
 
@@ -43,22 +70,42 @@ def executar_consulta_em_background(consulta_id):
         resultado = consultar_selo_verde_acre(
             consulta.numero_car,
             on_progress=atualizar_progresso,
+            consulta_id=consulta.pk,
         )
         consulta.dados = resultado["dados"]
         consulta.atualizado_em_site = resultado.get("atualizado_em_site", "")
 
-        if settings.GEMINI_API_KEY:
-            atualizar_progresso("Analisando situação conforme legislação ambiental (IA)…")
+        caminho_mapa = resultado.get("imagem_terreno")
+        if caminho_mapa:
+            _salvar_imagem_terreno_consulta(consulta, caminho_mapa)
+
+        if chave_ia_configurada():
+            atualizar_progresso("Elaborando diagnóstico técnico preliminar (IA)…")
             try:
-                salvar_parecer_consulta(consulta)
-            except ParecerGeminiError as exc:
+                diag = gerar_diagnostico_consulta(
+                    consulta.numero_car,
+                    consulta.dados,
+                    consulta.atualizado_em_site,
+                )
+                consulta.parecer = diag["parecer"]
+                consulta.parecer_diagnostico = diag.get("parecer_diagnostico") or {}
+                consulta.alertas_criticos = diag.get("alertas_criticos", "")
+            except ParecerIAError as exc:
                 consulta.parecer = ""
+                consulta.parecer_diagnostico = {}
                 consulta.alertas_criticos = ""
-                logger.warning("Parecer Gemini não gerado (consulta %s): %s", consulta_id, exc)
+                logger.warning("Diagnóstico IA não gerado (consulta %s): %s", consulta_id, exc)
 
         consulta.status = ConsultaHistorico.STATUS_SUCESSO
         consulta.mensagem_erro = ""
         consulta.save()
+
+        if consulta.parecer_diagnostico:
+            atualizar_progresso("Gerando PDF folder RuralPro…")
+            _gerar_pdf_e_storage(consulta)
+        elif consulta.dados:
+            salvar_resultado_consulta(consulta)
+
         logger.info("Consulta %s concluída com sucesso", consulta_id)
     except SeloVerdeAcreError as exc:
         consulta.refresh_from_db()

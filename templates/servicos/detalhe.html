@@ -29,15 +29,7 @@
   {% if relacionados %}
   <div class="container section-top">
     <h2>Outros serviços</h2>
-    <div class="cards-grid cards-grid--3">
-      {% for s in relacionados %}
-      <article class="card card-service">
-        <div class="card-body">
-          <h3><a href="{% url 'servicos:detalhe' s.slug %}">{{ s.titulo }}</a></h3>
-        </div>
-      </article>
-      {% endfor %}
-    </div>
+    {% include "partials/servicos_cards.html" with servicos=relacionados %}
   </div>
   {% endif %}
 </section>

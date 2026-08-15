@@ -2,9 +2,11 @@ import logging
 import os
 import re
 import time
+import uuid
 from pathlib import Path
 
 from django.conf import settings
+from django.core.files.base import ContentFile
 
 logger = logging.getLogger(__name__)
 
@@ -488,7 +490,191 @@ def _extrair_dados_iframe(driver, iframe):
     return dados, atualizado
 
 
-def consultar_selo_verde_acre(numero_car, captcha_timeout=None, on_progress=None):
+def _voltar_conteudo_principal(driver):
+    try:
+        driver.switch_to.default_content()
+    except Exception:
+        pass
+
+
+def _entrar_iframe_resultado(driver):
+    from selenium.webdriver.common.by import By
+
+    iframe = driver.find_element(By.ID, "icar_result")
+    driver.switch_to.frame(iframe)
+    return iframe
+
+
+def _aguardar_iframe_mappia(driver, timeout=90):
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+
+    def mappia_carregado(_driver):
+        try:
+            elemento = _driver.find_element(By.ID, "mappia")
+            src = (elemento.get_attribute("src") or "").lower()
+            altura = elemento.size.get("height", 0)
+            if altura < 300:
+                return False
+            if "maps.csr.ufmg.br" in src or "calculator" in src:
+                _driver.execute_script(
+                    "arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});",
+                    elemento,
+                )
+                return True
+            return altura >= 400
+        except Exception:
+            return False
+
+    WebDriverWait(driver, timeout).until(mappia_carregado)
+    return driver.find_element(By.ID, "mappia")
+
+
+def _capturar_dentro_mappia(driver, caminho):
+    from selenium.webdriver.common.by import By
+
+    driver.switch_to.frame(driver.find_element(By.ID, "mappia"))
+    time.sleep(4)
+
+    elemento = driver.execute_script(
+        """
+        const registrar = (el) => {
+            if (!el) return null;
+            const rect = el.getBoundingClientRect();
+            if (rect.width >= 280 && rect.height >= 200) return el;
+            return null;
+        };
+        const ordem = [
+            '.ol-viewport',
+            '#map',
+            '.map',
+            '[class*="map"]',
+            'canvas'
+        ];
+        for (const sel of ordem) {
+            const nodes = document.querySelectorAll(sel);
+            for (const node of nodes) {
+                const ok = registrar(node.closest('.ol-viewport, #map, .map') || node);
+                if (ok) return ok;
+            }
+        }
+        return document.body;
+        """
+    )
+
+    if elemento:
+        elemento.screenshot(str(caminho))
+    _voltar_conteudo_principal(driver)
+    _entrar_iframe_resultado(driver)
+
+
+def _capturar_imagem_terreno(driver, consulta_id=None, numero_car="", on_progress=None):
+    from selenium.webdriver.common.by import By
+
+    pasta = Path(settings.MEDIA_ROOT) / "buscarrural" / "terreno"
+    pasta.mkdir(parents=True, exist_ok=True)
+    nome = f"terreno_{consulta_id or uuid.uuid4().hex[:8]}.png"
+    caminho = pasta / nome
+
+    try:
+        _voltar_conteudo_principal(driver)
+        _entrar_iframe_resultado(driver)
+
+        if on_progress:
+            on_progress("Localizando mapa Mappia (CSR/UFMG) no Selo Verde…")
+
+        try:
+            mappia = _aguardar_iframe_mappia(driver, timeout=90)
+        except Exception:
+            mappia = driver.find_elements(By.ID, "mappia")
+            mappia = mappia[0] if mappia else None
+            if mappia:
+                driver.execute_script(
+                    "arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});",
+                    mappia,
+                )
+                time.sleep(2)
+
+        if not mappia:
+            logger.warning("Iframe #mappia não encontrado no relatório Selo Verde")
+            _voltar_conteudo_principal(driver)
+            return None
+
+        src = mappia.get_attribute("src") or ""
+        logger.info("Iframe mappia encontrado: %s", src[:120])
+
+        for tentativa in range(4):
+            if on_progress:
+                if tentativa == 0:
+                    on_progress("Aguardando mapa do imóvel carregar…")
+                else:
+                    on_progress(f"Capturando mapa do imóvel… ({tentativa + 1}/4)")
+
+            time.sleep(3 if tentativa == 0 else 2.5)
+            mappia = driver.find_element(By.ID, "mappia")
+            driver.execute_script(
+                "arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});",
+                mappia,
+            )
+
+            try:
+                mappia.screenshot(str(caminho))
+            except Exception:
+                pass
+
+            if caminho.exists() and caminho.stat().st_size > 20000:
+                _voltar_conteudo_principal(driver)
+                logger.info(
+                    "Mapa Mappia capturado via iframe (%s bytes, CAR %s)",
+                    caminho.stat().st_size,
+                    numero_car or consulta_id,
+                )
+                return caminho
+
+            try:
+                _capturar_dentro_mappia(driver, caminho)
+            except Exception as exc:
+                logger.debug("Screenshot interno mappia falhou: %s", exc)
+
+            if caminho.exists() and caminho.stat().st_size > 15000:
+                _voltar_conteudo_principal(driver)
+                logger.info("Mapa capturado dentro do iframe Mappia (%s bytes)", caminho.stat().st_size)
+                return caminho
+
+        _voltar_conteudo_principal(driver)
+        if caminho.exists():
+            caminho.unlink(missing_ok=True)
+        return None
+    except Exception as exc:
+        logger.warning("Falha ao capturar mapa do terreno: %s", exc)
+        _voltar_conteudo_principal(driver)
+        if caminho.exists():
+            caminho.unlink(missing_ok=True)
+        return None
+
+
+def _mapa_fallback_coordenadas(dados, consulta_id=None):
+    pasta = Path(settings.MEDIA_ROOT) / "buscarrural" / "terreno"
+    pasta.mkdir(parents=True, exist_ok=True)
+    nome = f"terreno_osm_{consulta_id or uuid.uuid4().hex[:8]}.png"
+    caminho = pasta / nome
+    from buscarrural.services.diagnostico_dados import gerar_mapa_estatico_coordenadas
+
+    resultado = gerar_mapa_estatico_coordenadas(dados, caminho)
+    if resultado:
+        logger.info("Mapa gerado por coordenadas (fallback OSM)")
+    return resultado
+
+
+def _salvar_imagem_terreno_consulta(consulta, caminho_imagem):
+    if not caminho_imagem or not Path(caminho_imagem).exists():
+        return
+    with open(caminho_imagem, "rb") as arquivo:
+        nome = f"mapa_{consulta.pk}.png"
+        consulta.imagem_terreno.save(nome, ContentFile(arquivo.read()), save=False)
+
+
+def consultar_selo_verde_acre(numero_car, captcha_timeout=None, on_progress=None, consulta_id=None):
     if not _selenium_disponivel():
         raise SeloVerdeAcreError("Selenium não instalado. Rode: pip install selenium")
 
@@ -523,6 +709,17 @@ def consultar_selo_verde_acre(numero_car, captcha_timeout=None, on_progress=None
         iframe = _aguardar_iframe_resultado(driver)
         dados, atualizado_em = _extrair_dados_iframe(driver, iframe)
 
+        caminho_mapa = _capturar_imagem_terreno(
+            driver,
+            consulta_id=consulta_id,
+            numero_car=numero_car,
+            on_progress=on_progress,
+        )
+        if not caminho_mapa:
+            if on_progress:
+                on_progress("Gerando mapa pela geolocalização do CAR…")
+            caminho_mapa = _mapa_fallback_coordenadas(dados, consulta_id=consulta_id)
+
         if not dados.get("campos") and not dados.get("secoes"):
             raise SeloVerdeAcreError(
                 "Nenhum dado encontrado na tela. Verifique o código CAR ou tente novamente."
@@ -533,6 +730,7 @@ def consultar_selo_verde_acre(numero_car, captcha_timeout=None, on_progress=None
         return {
             "dados": dados,
             "atualizado_em_site": atualizado_em,
+            "imagem_terreno": caminho_mapa,
         }
     except SeloVerdeAcreError:
         raise

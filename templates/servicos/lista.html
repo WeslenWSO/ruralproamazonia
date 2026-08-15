@@ -1,26 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Serviços — {{ block.super }}{% endblock %}
 {% block content %}
-<section class="page-hero">
+<section class="page-hero page-hero--compact">
   <div class="container">
-    <h1>Serviços</h1>
-    <p>Soluções completas para o agronegócio amazônico</p>
+    <h1>Portfólio completo para o <strong>agronegócio amazônico</strong></h1>
+    <p>Serviços com diversos níveis de complexidade para o produtor rural.</p>
   </div>
 </section>
 <section class="section">
-  <div class="container cards-grid">
-    {% for servico in servicos %}
-    <article class="card card-service">
-      <div class="card-image" style="background-image:url('{{ servico.imagem_url }}')"></div>
-      <div class="card-body">
-        <h2><a href="{% url 'servicos:detalhe' servico.slug %}">{{ servico.titulo }}</a></h2>
-        <p>{{ servico.resumo }}</p>
-        <a class="btn btn-outline" href="{% url 'servicos:detalhe' servico.slug %}">Detalhes</a>
-      </div>
-    </article>
-    {% empty %}
-    <p>Nenhum serviço disponível no momento.</p>
-    {% endfor %}
+  <div class="container">
+    {% include "partials/servicos_cards.html" %}
   </div>
 </section>
 {% endblock %}

@@ -2,10 +2,14 @@
 WSGI config for config project.
 """
 
-import fcntl
 import os
 import sys
 from pathlib import Path
+
+try:
+    import fcntl
+except ImportError:
+    fcntl = None
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
@@ -18,7 +22,7 @@ def _rodando_no_render():
 
 
 def _preparar_banco_render():
-    if not _rodando_no_render():
+    if not _rodando_no_render() or fcntl is None:
         return
 
     lock_path = Path("/tmp/ruralpro_bootstrap.lock")

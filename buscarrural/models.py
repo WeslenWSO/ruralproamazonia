@@ -29,7 +29,14 @@ class ConsultaHistorico(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=STATUS_PENDENTE)
     dados = models.JSONField(default=dict, blank=True)
     parecer = models.TextField("Parecer IA", blank=True)
+    parecer_diagnostico = models.JSONField("Diagnóstico estruturado IA", default=dict, blank=True)
     alertas_criticos = models.TextField("Alertas críticos IA", blank=True)
+    imagem_terreno = models.ImageField(
+        upload_to="buscarrural/terreno/",
+        blank=True,
+        null=True,
+        verbose_name="Mapa do imóvel",
+    )
     pdf = models.FileField(upload_to="buscarrural/selo_verde/", blank=True, null=True)
     atualizado_em_site = models.CharField(max_length=40, blank=True)
     mensagem_erro = models.TextField(blank=True)

@@ -9,67 +9,14 @@
       <h2>Portfólio completo para o <strong>agronegócio amazônico</strong></h2>
       <p>Serviços com diversos níveis de complexidade para o produtor rural.</p>
     </header>
-    <div class="cards-grid cards-grid--services">
-      {% for servico in servicos_destaque %}
-      <article class="card card-service card-service--corp">
-        <div class="card-image" style="background-image:url('{{ servico.imagem_url }}')">
-          <div class="card-image-overlay">
-            <h3>{{ servico.titulo }}</h3>
-          </div>
-        </div>
-        <div class="card-body">
-          <p>{{ servico.resumo|truncatewords:18 }}</p>
-          <a href="{% url 'servicos:detalhe' servico.slug %}" class="btn btn-outline btn-block">Saiba mais</a>
-        </div>
-      </article>
-      {% empty %}
-      <p>Cadastre serviços no painel administrativo.</p>
-      {% endfor %}
-    </div>
+    {% if servicos_destaque %}
+    {% include "partials/servicos_cards.html" with servicos=servicos_destaque %}
+    {% else %}
+    <p>Cadastre serviços no painel administrativo.</p>
+    {% endif %}
     <p class="section-cta-link"><a href="{% url 'servicos:lista' %}" class="link-more">Ver todos os serviços →</a></p>
   </div>
 </section>
 
-{% include "partials/pillars.html" %}
 {% include "partials/clima_municipios.html" %}
-
-<section class="section section-alt">
-  <div class="container about-split">
-    <div class="about-text">
-      <h2>{{ historia.titulo }}</h2>
-      <div class="richtext">{{ historia.conteudo|safe }}</div>
-      <a href="{% url 'contato:contato' %}" class="btn btn-cta">Conheça nossa história</a>
-    </div>
-    <div class="about-image" style="background-image:url('{% if historia.imagem %}{{ historia.imagem.url }}{% else %}/static/img/about.jpg{% endif %}')"></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <header class="section-header">
-      <h2>Blog e <strong>notícias</strong></h2>
-      <a href="{% url 'blog:lista' %}" class="link-more">Ver todas</a>
-    </header>
-    <div class="cards-grid">
-      {% for post in posts_destaque %}
-      <article class="card card-blog">
-        <div class="card-image" style="background-image:url('{{ post.imagem_url }}')"></div>
-        <div class="card-body">
-          {% if post.categoria %}<span class="tag">{{ post.categoria.nome }}</span>{% endif %}
-          <h3>
-            {% if post.link_externo %}
-            <a href="{{ post.link_externo }}" target="_blank" rel="noopener">{{ post.titulo }}</a>
-            {% else %}
-            <a href="{% url 'blog:detalhe' post.slug %}">{{ post.titulo }}</a>
-            {% endif %}
-          </h3>
-          <p>{{ post.resumo|truncatewords:18 }}</p>
-        </div>
-      </article>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-{% include "partials/cta_orcamento.html" %}
 {% endblock %}

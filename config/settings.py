@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'core',
     'servicos',
-    'blog',
     'contato',
     'clientes.apps.ClientesConfig',
     'buscarrural',
@@ -241,6 +240,11 @@ SELENIUM_CAPTCHA_TIMEOUT = int(os.environ.get("SELENIUM_CAPTCHA_TIMEOUT", "300")
 # Google Gemini — parecer BuscarRural (chave só no .env, nunca no Git)
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash").strip()
+
+# OpenAI — diagnóstico técnico BuscarRural (chave só no .env, nunca no Git)
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "").strip()
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini").strip()
+PARECER_IA_PROVIDER = os.environ.get("PARECER_IA_PROVIDER", "openai").strip().lower()
 
 CKEDITOR_CONFIGS = {
     'default': {

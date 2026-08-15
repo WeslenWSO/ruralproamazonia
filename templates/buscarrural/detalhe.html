@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Consulta {{ consulta.numero_car }} — {{ block.super }}{% endblock %}
 {% block content %}
 <section class="page-hero page-hero--compact">
@@ -16,12 +17,12 @@
       <form method="post" action="{% url 'buscarrural:gerar_parecer' consulta.pk %}" class="consulta-acoes__form">
         {% csrf_token %}
         <button type="submit" class="btn btn-primary">
-          {% if tem_parecer %}Atualizar parecer no Gemini{% else %}Gerar parecer no Gemini{% endif %}
+          {% if tem_parecer %}Atualizar diagnóstico (IA){% else %}Gerar diagnóstico (IA){% endif %}
         </button>
       </form>
       {% endif %}
       {% if consulta.pdf %}
-      <a href="{{ consulta.pdf.url }}" class="btn btn-primary" target="_blank" rel="noopener">Download PDF</a>
+      <a href="{{ consulta.pdf.url }}" class="btn btn-primary" target="_blank" rel="noopener">Download PDF Folder</a>
       {% endif %}
     </div>
 
@@ -32,20 +33,72 @@
     {% if consulta.alertas_criticos %}
     <div class="consulta-alertas auth-card auth-card--wide">
       <h2>Alertas críticos</h2>
-      <p class="form-help">Pontos de maior risco identificados nos dados do Selo Verde AC (CAR ao SIGEF).</p>
+      <p class="form-help">Pontos de maior risco identificados nos dados do Selo Verde AC.</p>
       <div class="consulta-alertas__lista">{{ consulta.alertas_criticos|linebreaks }}</div>
     </div>
     {% endif %}
 
-    {% if consulta.parecer %}
+    {% if secoes_diagnostico and indicadores %}
+    <div class="diag-folder auth-card auth-card--wide">
+      <div class="diag-folder__header">
+        <div>
+          <img src="{% static 'img/logo.png' %}" alt="RuralPro" class="diag-folder__logo" onerror="this.style.display='none'">
+          <p class="diag-folder__tagline">Soluções Fundiárias e Ambientais — Tudo em um só lugar —</p>
+        </div>
+        <div class="diag-folder__meta">
+          <strong>DIAGNÓSTICO TÉCNICO | CAR</strong>
+          <span>Emissão: {{ indicadores.emissao }}</span>
+        </div>
+      </div>
+
+      <div class="diag-folder__banner">
+        <h2>Diagnóstico Técnico Preliminar</h2>
+        <p>Cadastro Ambiental Rural - CAR</p>
+        <p>Imóvel de {{ indicadores.area_numero }} ha | Código {{ consulta.numero_car }}</p>
+        <p>Base analisada: {{ indicadores.base_analisada }}</p>
+      </div>
+
+      <div class="diag-folder__kpis">
+        {% for card in indicadores.cards %}
+        <div class="diag-kpi diag-kpi--{{ card.tipo }}">
+          <strong class="diag-kpi__valor">{{ card.valor }}{% if card.unidade %} {{ card.unidade }}{% endif %}</strong>
+          <span class="diag-kpi__titulo">{{ card.titulo }}</span>
+          <small>{{ card.subtitulo }}</small>
+        </div>
+        {% endfor %}
+      </div>
+
+      {% for secao in secoes_diagnostico %}
+      <article class="diag-secao">
+        <header class="diag-secao__head">
+          <span class="diag-secao__num">{{ secao.numero }}</span>
+          <h3>{{ secao.titulo }}</h3>
+        </header>
+        <div class="diag-secao__corpo">{{ secao.texto|linebreaks }}</div>
+        {% if secao.leitura_direta %}
+        <div class="diag-leitura">
+          <strong>Leitura direta</strong>
+          <p>{{ secao.leitura_direta }}</p>
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+
+      {% if consulta.imagem_terreno %}
+      <div class="diag-mapa">
+        <h3>Mapa do imóvel</h3>
+        <img src="{{ consulta.imagem_terreno.url }}" alt="Mapa do imóvel — {{ consulta.numero_car }}" class="diag-mapa__img">
+      </div>
+      {% endif %}
+
+      <footer class="diag-folder__rodape">
+        <p>Para mais informações agende uma conversa com nossos especialistas <strong>(68) 9.9901-2015</strong></p>
+      </footer>
+    </div>
+    {% elif consulta.parecer %}
     <div class="consulta-parecer auth-card auth-card--wide">
-      <h2>Mini parecer da situação rural</h2>
-      <p class="form-help">
-        Análise automatizada com base nos dados do Selo Verde AC (CAR, ambiental, SIGEF/INCRA) e na legislação aplicável.
-        Não substitui vistoria ou parecer técnico assinado.
-      </p>
+      <h2>Diagnóstico técnico preliminar</h2>
       <div class="consulta-parecer__texto">{{ consulta.parecer|linebreaks }}</div>
-      <p class="consulta-parecer__aviso"><strong>Para mais detalhes, procure o engenheiro ambiental.</strong></p>
     </div>
     {% endif %}
 
@@ -78,6 +131,14 @@
     </table>
     {% else %}
     <p>Sem dados extraídos para esta consulta.</p>
+    {% endif %}
+
+    {% if consulta.imagem_terreno and not secoes_diagnostico %}
+    <div class="diag-mapa auth-card auth-card--wide">
+      <h2>Mapa do imóvel (Selo Verde AC)</h2>
+      <p class="form-help">Localização e limites conforme consulta socioambiental oficial.</p>
+      <img src="{{ consulta.imagem_terreno.url }}" alt="Mapa do imóvel — {{ consulta.numero_car }}" class="diag-mapa__img">
+    </div>
     {% endif %}
   </div>
 </section>

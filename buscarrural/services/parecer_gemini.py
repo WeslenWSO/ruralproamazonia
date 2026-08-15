@@ -2,11 +2,35 @@ import logging
 import re
 
 from django.conf import settings
-from google import genai
-from google.genai import errors as genai_errors
-from google.genai import types
 
 logger = logging.getLogger(__name__)
+
+
+class ParecerGeminiError(Exception):
+    pass
+
+
+_genai_mod = None
+_genai_errors = None
+_genai_types = None
+
+
+def _carregar_sdk_gemini():
+    global _genai_mod, _genai_errors, _genai_types
+    if _genai_mod is not None:
+        return _genai_mod, _genai_errors, _genai_types
+    try:
+        from google import genai
+        from google.genai import errors as genai_errors
+        from google.genai import types
+    except ImportError as exc:
+        raise ParecerGeminiError(
+            "Pacote google-genai não instalado. Rode: pip install google-genai"
+        ) from exc
+    _genai_mod = genai
+    _genai_errors = genai_errors
+    _genai_types = types
+    return genai, genai_errors, types
 
 MODELOS_FALLBACK = (
     "gemini-3.5-flash",
@@ -86,10 +110,6 @@ ROTULOS_CRITICOS = (
 )
 
 
-class ParecerGeminiError(Exception):
-    pass
-
-
 def _validar_chave_api(api_key):
     if not api_key:
         raise ParecerGeminiError(
@@ -109,6 +129,7 @@ def _modelos_para_tentar():
 
 
 def _extrair_erro_api(exc):
+    _, genai_errors, _ = _carregar_sdk_gemini()
     if isinstance(exc, genai_errors.ClientError):
         mensagem = str(exc).strip()
         if mensagem:
@@ -117,10 +138,12 @@ def _extrair_erro_api(exc):
 
 
 def _cliente_gemini(api_key):
+    genai, _, _ = _carregar_sdk_gemini()
     return genai.Client(api_key=api_key)
 
 
 def _chamar_gemini(client, model, prompt):
+    _, _, types = _carregar_sdk_gemini()
     config = types.GenerateContentConfig(
         temperature=0.25,
         max_output_tokens=2200,
@@ -390,6 +413,7 @@ def gerar_parecer_selo_verde(numero_car, dados, atualizado_em_site=""):
     if not dados:
         raise ParecerGeminiError("Sem dados do Selo Verde para gerar o parecer.")
 
+    _, genai_errors, _ = _carregar_sdk_gemini()
     alertas_auto = _detectar_alertas_automaticos(dados)
     contexto = _montar_contexto(numero_car, dados, atualizado_em_site)
     prompt = _montar_prompt(contexto, alertas_auto)

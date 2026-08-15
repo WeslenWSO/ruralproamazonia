@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 
-from blog.models import Categoria, Post
 from contato.models import ContatoAlertaClima
 from core.models import ConfiguracaoSite, HistoriaEmpresa, SlideHero
 from servicos.models import Servico
@@ -44,7 +43,7 @@ class Command(BaseCommand):
         slides = [
             ("Agronegócio sustentável", "Tecnologia e respeito à floresta", "img/hero-1.png", "/servicos/", 1),
             ("Consultoria especializada", "Do planejamento à execução", "img/hero-2.png", "/contato/", 2),
-            ("Fortalecendo comunidades", "Parcerias que transformam", "img/hero-3.png", "/blog/", 3),
+            ("Fortalecendo comunidades", "Parcerias que transformam", "img/hero-3.png", "/contato/", 3),
             (
                 "Medida de terra por drone",
                 "Topografia de precisão para sua propriedade",
@@ -118,24 +117,6 @@ class Command(BaseCommand):
                 destaque=destaque,
                 ativo=True,
                 ordem=ordem,
-            )
-
-        cat, _ = Categoria.objects.get_or_create(slug="noticias", defaults={"nome": "Notícias"})
-        Post.objects.all().delete()
-        posts_data = [
-            ("Novidades do setor na Amazônia", "Panorama das tendências para o agronegócio regional.", "blog-1.png"),
-            ("Evento de capacitação rural", "Inscrições abertas para workshop gratuito.", "blog-2.png"),
-            ("Parceria com cooperativas", "Ampliamos atendimento a produtores associados.", "blog-3.png"),
-        ]
-        for titulo, resumo, img in posts_data:
-            Post.objects.create(
-                titulo=titulo,
-                resumo=resumo,
-                conteudo=f"<p>{resumo}</p>",
-                categoria=cat,
-                imagem_estatica=f"img/{img}",
-                destaque=True,
-                publicado=True,
             )
 
         for telefone, nome in (("68999073217", "Contato 1"), ("68992824636", "Contato 2")):

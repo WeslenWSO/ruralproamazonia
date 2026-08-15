@@ -1,0 +1,19 @@
+{% if servicos %}
+<div class="cards-grid cards-grid--services">
+  {% for servico in servicos %}
+  <article class="card card-service card-service--corp">
+    <div class="card-image" style="background-image:url('{{ servico.imagem_url }}')">
+      <div class="card-image-overlay">
+        <h3>{{ servico.titulo }}</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>{{ servico.resumo|truncatewords:18 }}</p>
+      <a href="{% url 'servicos:detalhe' servico.slug %}" class="btn btn-outline btn-block">Saiba mais</a>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<p>Nenhum serviço disponível no momento.</p>
+{% endif %}

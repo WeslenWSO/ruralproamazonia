@@ -40,9 +40,15 @@ services:
         value: ruralproamazonia.onrender.com
       - key: GEMINI_MODEL
         value: gemini-3.5-flash
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: PARECER_IA_PROVIDER
+        value: openai
       - key: SELENIUM_HEADLESS
         value: "True"
       - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
         sync: false
       - key: GOOGLE_CLIENT_ID
         sync: false

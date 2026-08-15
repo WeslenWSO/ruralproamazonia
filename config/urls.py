@@ -9,7 +9,6 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("", include("core.urls")),
     path("servicos/", include("servicos.urls")),
-    path("blog/", include("blog.urls")),
     path("contato/", include("contato.urls")),
     path("clientes/", include("clientes.urls")),
     path("buscarrural/", include("buscarrural.urls")),
