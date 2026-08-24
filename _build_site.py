@@ -138,8 +138,8 @@ class ConfiguracaoSite(SingletonModel):
     whatsapp = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
     endereco = models.CharField(max_length=255, blank=True)
-    cidade = models.CharField(max_length=80, blank=True, default="Manaus")
-    estado = models.CharField(max_length=2, blank=True, default="AM")
+    cidade = models.CharField(max_length=80, blank=True, default="Rio Branco")
+    estado = models.CharField(max_length=2, blank=True, default="AC")
     facebook = models.URLField(blank=True)
     instagram = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
@@ -828,8 +828,8 @@ class Command(BaseCommand):
         config.whatsapp = "5592300000000"
         config.email = "contato@ruralproamazonia.com.br"
         config.endereco = "RODOVIA BR-364 VIA VERDE, Nº 3600- VIA TOWER CORPORATE - 6º ANDAR - SALA 606B"
-        config.cidade = "Manaus"
-        config.estado = "AM"
+        config.cidade = "Rio Branco"
+        config.estado = "AC"
         config.pilar_1_titulo = "Sustentabilidade"
         config.pilar_1_texto = "Práticas responsáveis que preservam a floresta e geram valor."
         config.pilar_2_titulo = "Inovação"
