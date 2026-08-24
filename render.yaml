@@ -31,13 +31,13 @@ services:
       - key: DJANGO_SETTINGS_MODULE
         value: config.settings
       - key: ALLOWED_HOSTS
-        value: ruralproamazonia.onrender.com,localhost,127.0.0.1
+        value: ruralproamazonia.onrender.com,www.ruralproamazonia.com.br,ruralproamazonia.com.br,localhost,127.0.0.1
       - key: CSRF_TRUSTED_ORIGINS
-        value: https://ruralproamazonia.onrender.com
+        value: https://ruralproamazonia.onrender.com,https://www.ruralproamazonia.com.br,https://ruralproamazonia.com.br
       - key: SITE_BASE_URL
-        value: https://ruralproamazonia.onrender.com
+        value: https://www.ruralproamazonia.com.br
       - key: SITE_DOMAIN
-        value: ruralproamazonia.onrender.com
+        value: www.ruralproamazonia.com.br
       - key: GEMINI_MODEL
         value: gemini-3.5-flash
       - key: OPENAI_MODEL
