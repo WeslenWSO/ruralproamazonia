@@ -29,7 +29,6 @@
     <div class="footer-col">
       <h4>Contato</h4>
       {% if site_config.telefone %}<p>Tel: {{ site_config.telefone }}</p>{% endif %}
-      {% if site_config.whatsapp %}<p>WhatsApp: {{ site_config.whatsapp }}</p>{% endif %}
       {% if site_config.email %}<p><a href="mailto:{{ site_config.email }}">{{ site_config.email }}</a></p>{% endif %}
       {% if site_config.endereco %}<p>{{ site_config.endereco }}{% if site_config.cidade %}, {{ site_config.cidade }}/{{ site_config.estado }}{% endif %}</p>{% endif %}
     </div>

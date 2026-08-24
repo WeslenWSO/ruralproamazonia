@@ -45,7 +45,7 @@ def _logo_path():
 
 def _contato():
     config = ConfiguracaoSite.load()
-    endereco = config.endereco or "Edifício Via Towers, 6º Andar, Sala 606"
+    endereco = config.endereco or "RODOVIA BR-364 VIA VERDE, Nº 3600- VIA TOWER CORPORATE - 6º ANDAR - SALA 606B"
     cidade = f"{config.cidade}/{config.estado}" if config.cidade else "Rio Branco/AC"
     return {
         "telefone": config.telefone or "(68) 9.9901-2015",

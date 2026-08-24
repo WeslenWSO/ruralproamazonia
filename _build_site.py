@@ -827,7 +827,7 @@ class Command(BaseCommand):
         config.telefone = "(92) 3000-0000"
         config.whatsapp = "5592300000000"
         config.email = "contato@ruralproamazonia.com.br"
-        config.endereco = "Av. Example, 1000 — Adrianópolis"
+        config.endereco = "RODOVIA BR-364 VIA VERDE, Nº 3600- VIA TOWER CORPORATE - 6º ANDAR - SALA 606B"
         config.cidade = "Manaus"
         config.estado = "AM"
         config.pilar_1_titulo = "Sustentabilidade"
